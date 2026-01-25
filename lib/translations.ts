@@ -45,6 +45,11 @@ export const translations = {
       title: "Powerful Solutions for",
       titleHighlight: "Every Need",
       description: "From individual users to enterprise clients, our suite of products provides comprehensive financial solutions tailored to the MENA market.",
+      buttons: {
+        sanadpay: "SanadPay",
+        sanadak: "Sanadak",
+        sanadnotify: "SanadNotify",
+      },
       featured: "Featured",
       getStarted: "Get Started",
       learnMore: "Learn More",
@@ -76,6 +81,24 @@ export const translations = {
           { title: "Custom Security", desc: "Enterprise-grade security with custom configurations." },
           { title: "API Access", desc: "Full API access for custom integrations." },
           { title: "Dedicated Support", desc: "24/7 dedicated account management team." },
+        ],
+      },
+      sanadak: {
+        tagline: "Microfinance & Savings",
+        description: "Tools for microfinance, savings plans, and small business credit to empower communities and SMEs.",
+        features: [
+          { title: "Savings Plans", desc: "Flexible savings plans with competitive interest rates and automatic top-ups." },
+          { title: "Microloans", desc: "Quick microloan approvals tailored for small businesses and entrepreneurs." },
+          { title: "Group Accounts", desc: "Shared accounts for cooperatives and community groups." },
+        ],
+      },
+      sanadnotify: {
+        tagline: "Real-time Alerts & Notifications",
+        description: "Real-time transaction alerts, webhooks, and delivery channels to keep customers and systems instantly informed.",
+        features: [
+          { title: "Transaction Alerts", desc: "Instant SMS and email alerts for every important transaction." },
+          { title: "Webhooks", desc: "Reliable webhook delivery for backend integrations and automation." },
+          { title: "Custom Templates", desc: "Customizable email/SMS templates to match your brand and tone." },
         ],
       },
     },
@@ -167,6 +190,21 @@ export const translations = {
       ],
       partnersText: "Integrated with leading platforms and partners",
     },
+
+    // Journey Section
+    journey: {
+      subtitle: "Our Journey",
+      title: "Milestones",
+      titleHighlight: "& Growth",
+      items: [
+        { year: "2018", title: "Company Founded", desc: "Started with a vision to transform payments in Sudan" },
+        { year: "2019", title: "SanadPay Launch", desc: "Launched our flagship payment gateway" },
+        { year: "2021", title: "Sanadak Launch", desc: "Introduced our smart digital wallet" },
+        { year: "2023", title: "SanadNotify Launch", desc: "Completed our ecosystem with notifications" },
+        { year: "2024", title: "Regional Expansion", desc: "Expanded our presence across the region" },
+      ],
+    },
+
     // Testimonials Section
     testimonials: {
       subtitle: "Testimonials",
@@ -329,6 +367,11 @@ export const translations = {
       title: "حلول قوية لكل",
       titleHighlight: "احتياج",
       description: "من المستخدمين الأفراد إلى عملاء المؤسسات، توفر مجموعة منتجاتنا حلولاً مالية شاملة مصممة خصيصاً لسوق الشرق الأوسط وشمال أفريقيا.",
+      buttons: {
+        sanadpay: "ساند باي",
+        sanadak: "سانداك",
+        sanadnotify: "ساند نوتيفاي",
+      },
       featured: "مميز",
       getStarted: "ابدأ الآن",
       learnMore: "اعرف المزيد",
@@ -360,6 +403,24 @@ export const translations = {
           { title: "أمان مخصص", desc: "أمان على مستوى المؤسسات مع تكوينات مخصصة." },
           { title: "الوصول إلى API", desc: "وصول كامل إلى API للتكاملات المخصصة." },
           { title: "دعم مخصص", desc: "فريق إدارة حسابات مخصص على مدار الساعة." },
+        ],
+      },
+      sanadak: {
+        tagline: "التمويل المصغر والادخار",
+        description: "أدوات للتمويل المصغر وخطط الادخار والائتمان للشركات الصغيرة لدعم المجتمعات والمؤسسات الصغيرة.",
+        features: [
+          { title: "خطط الادخار", desc: "خطط ادخار مرنة مع معدلات فائدة تنافسية وإضافة تلقائية." },
+          { title: "قروض صغيرة", desc: "موافقات سريعة للقروض الصغيرة مصممة للأعمال الصغيرة ورواد الأعمال." },
+          { title: "حسابات جماعية", desc: "حسابات مشتركة للتعاونيات والمجموعات المجتمعية." },
+        ],
+      },
+      sanadnotify: {
+        tagline: "التنبيهات والإشعارات الفورية",
+        description: "تنبيهات المعاملات في الوقت الحقيقي والويب هوكس وقنوات التسليم لإبقاء العملاء والأنظمة على اطلاع فوري.",
+        features: [
+          { title: "تنبيهات المعاملات", desc: "رسائل SMS ورسائل بريد إلكتروني فورية لكل معاملة مهمة." },
+          { title: "ويب هوكس", desc: "توصيل ويب هوكس موثوق للتكاملات الخلفية والأتمتة." },
+          { title: "قوالب مخصصة", desc: "قوالب بريد إلكتروني/SMS قابلة للتخصيص لتتناسب مع علامتك التجارية." },
         ],
       },
     },
@@ -451,6 +512,21 @@ export const translations = {
       ],
       partnersText: "متكامل مع المنصات والشركاء الرائدين",
     },
+
+    // Journey Section
+    journey: {
+      subtitle: "رحلتنا",
+      title: "محطات رئيسية",
+      titleHighlight: "ونمو",
+      items: [
+        { year: "2018", title: "تأسيس الشركة", desc: "بدأنا برؤية لتحويل المدفوعات في السودان" },
+        { year: "2019", title: "إطلاق ساند باي", desc: "أطلقنا بوابة الدفع الرئيسية لدينا" },
+        { year: "2021", title: "إطلاق سانداك", desc: "قدمنا محفظتنا الرقمية الذكية" },
+        { year: "2023", title: "إطلاق ساند نوتيفاي", desc: "أكملنا نظامنا البيئي بخدمة الإشعارات" },
+        { year: "2024", title: "التوسع الإقليمي", desc: "وسعنا وجودنا عبر المنطقة" },
+      ],
+    },
+
     // Testimonials Section
     testimonials: {
       subtitle: "الشهادات",

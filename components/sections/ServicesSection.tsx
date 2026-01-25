@@ -3,9 +3,10 @@
 import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
 import { useLanguage } from "@/lib/LanguageContext";
 import { translations } from "@/lib/translations";
+import { cn } from "@/lib/utils";
 
 export function ServicesSection() {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const t = translations[language].services;
 
   interface Service {
@@ -99,7 +100,7 @@ export function ServicesSection() {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all hover:shadow-lg"
             >
               {t.ctaButton}
-              <HugeIcon name="arrow-right" size={20} />
+              <HugeIcon name="arrow-right" size={20} className={cn(isRTL && "rotate-180")} />
             </a>
           </div>
         </AnimatedSection>

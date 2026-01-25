@@ -7,9 +7,10 @@ import { HugeIcon } from "@/components/ui";
 import { AnimatedSection } from "@/components/ui";
 import { useLanguage } from "@/lib/LanguageContext";
 import { translations } from "@/lib/translations";
+import { cn } from "@/lib/utils";
 
 export function HeroSection() {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const t = translations[language].hero;
 
   return (
@@ -17,8 +18,17 @@ export function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
     >
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10" />
+      {/* Background Image + Subtle Overlay */}
+      <div className="absolute inset-0 -z-20">
+        <Image
+          src="/bg-img.jpg"
+          alt="Hero background"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/80" />
+      </div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -75,17 +85,19 @@ export function HeroSection() {
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={0.3}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className={cn(
+                "flex flex-col md:flex-row gap-4 justify-center md:justify-start"
+              )}>
                 <Link
                   href="#products"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/25"
+                  className="inline-flex w-full md:w-auto items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/25"
                 >
                   {t.ctaPrimary}
-                  <HugeIcon name="arrow-right" size={20} />
+                  <HugeIcon name="arrow-right" size={20} className={cn(isRTL && "rotate-180")} />
                 </Link>
                 <Link
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-colors"
+                  className="inline-flex w-full md:w-auto items-center justify-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-colors"
                 >
                   {t.ctaSecondary}
                 </Link>
@@ -120,14 +132,22 @@ export function HeroSection() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="relative rounded-3xl overflow-hidden "
               >
-                <Image
-                  src="/hero.png"
-                  alt="Sanad-Soft Digital Financial Solutions"
-                  width={600}
-                  height={500}
-                  priority
-                  className="w-full h-auto object-cover"
-                />
+                {/* Subtle continuous bobbing animation */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                  className="w-full h-full"
+                >
+                  <Image
+                    src="/hero.png"
+                    alt="Sanad-Soft Digital Financial Solutions"
+                    width={600}
+                    height={500}
+                    priority
+                    className="w-full h-auto object-cover"
+                  />
+                </motion.div>
+
                 {/* Overlay gradient */}
                 {/* <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" /> */}
               </motion.div>

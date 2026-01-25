@@ -14,7 +14,7 @@ interface ContactInfo {
 }
 
 export function ContactSection() {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const t = translations[language].contact;
   
   const contactInfo: ContactInfo[] = [
@@ -293,7 +293,7 @@ export function ContactSection() {
                     ) : (
                       <>
                         {t.form.send}
-                        <HugeIcon name="arrow-right" size={20} />
+                        <HugeIcon name="arrow-right" size={20} className={cn(isRTL && "rotate-180")} />
                       </>
                     )}
                   </button>

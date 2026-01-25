@@ -1,5 +1,5 @@
-@import "tailwindcss";
-
+@import 'tailwindcss';
+@plugin 'lightswind/plugin';
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
@@ -112,7 +112,7 @@ body {
 /* Container utility */
 .container-custom {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1700px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -193,13 +193,15 @@ body {
   flex-direction: row-reverse;
 }
 
-/* Keep column layouts as-is */
-[dir="rtl"] .flex-col {
-  flex-direction: column !important;
-}
-
-[dir="rtl"] .flex-col-reverse {
-  flex-direction: column-reverse !important;
+/* Keep column layouts as-is on small screens */
+@media (max-width: 767px) {
+  [dir="rtl"] .flex-col {
+    /* Ensure columns remain vertical in RTL on small screens */
+    flex-direction: column;
+  }
+  [dir="rtl"] .flex-col-reverse {
+    flex-direction: column-reverse;
+  }
 }
 
 /* Grid direction */

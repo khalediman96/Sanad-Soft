@@ -1,13 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
 import { useLanguage } from "@/lib/LanguageContext";
+import { cn } from "@/lib/utils";
 import { translations } from "@/lib/translations";
 
 export function ProductsSection() {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const t = translations[language].products;
+  const [active, setActive] = useState("SanadPay");
 
   interface ProductFeature {
     icon: IconName;
@@ -82,67 +85,65 @@ export function ProductsSection() {
           </AnimatedSection>
         </div>
 
-        {/* Featured Product - SanadPay */}
-        {products
-          .filter((p) => p.isFeatured)
-          .map((product) => (
-            <AnimatedSection key={product.name} animation="fade-up" delay={0.3}>
-              <div className="bg-white dark:bg-card border border-border rounded-3xl p-8 md:p-12 mb-12 relative overflow-hidden">
-                {/* Background Decoration */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl" />
+        {/* Product Selector Buttons */}
+        <AnimatedSection animation="fade-up" delay={0.25}>
+          <div className="flex gap-3 mb-8">
+            {[
+              { id: "SanadPay", label: t.buttons.sanadpay },
+              { id: "Sanadak", label: t.buttons.sanadak },
+              { id: "SanadNotify", label: t.buttons.sanadnotify },
+            ].map((opt) => (
+              <button
+                key={opt.id}
+                onClick={() => setActive(opt.id)}
+                className={cn(
+                  "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                  active === opt.id
+                    ? "bg-primary text-white shadow-md"
+                    : "bg-transparent border border-white/10 text-foreground hover:border-primary"
+                )}
+              >
+                {opt.label}
+              </button>
+            ))}          </div>
 
-                <div className="relative z-10">
-                  {/* Product Header */}
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-                    <div>
-                      <div className="flex items-center gap-3 mb-2 text-start">
-                        <span className="px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
-                          {t.featured}
-                        </span>
-                        <span className="text-primary text-sm font-medium text-start">
-                          {product.tagline}
-                        </span>
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-foreground text-start">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-200 mt-3 max-w-2xl text-start">{product.description}</p>
-                    </div>
-                    <Link
-                      href="#contact"
-                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/25 whitespace-nowrap"
-                    >
-                      {t.getStarted}
-                      <HugeIcon name="arrow-right" size={20} />
-                    </Link>
-                  </div>
-
-                  {/* Features Grid */}
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {product.features.map((feature, index) => (
-                      <div
-                        key={feature.title}
-                        className="group p-6 bg-background rounded-2xl hover:shadow-md transition-all"
-                      >
-                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
-                          <HugeIcon
-                            name={feature.icon}
-                            size={24}
-                            className="text-primary group-hover:text-white transition-colors"
-                          />
-                        </div>
-                        <h4 className="text-lg font-semibold text-foreground mb-2 text-start">
-                          {feature.title}
-                        </h4>
-                        <p className="text-gray-200 text-sm text-start">{feature.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+          {/* Selected Product Panel */}
+          <div className="bg-white dark:bg-card border border-border rounded-2xl p-6 md:p-8 mb-8">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground text-start">
+                  {active === "SanadPay" ? "SanadPay" : active === "Sanadak" ? "Sanadak" : "SanadNotify"}
+                </h3>
+                <p className="text-gray-200 mt-2 max-w-2xl text-start">
+                  {active === "SanadPay"
+                    ? t.sanadpay.description
+                    : active === "Sanadak"
+                    ? t.sanadak.description
+                    : t.sanadnotify.description}
+                </p>
               </div>
-            </AnimatedSection>
-          ))}
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all whitespace-nowrap"
+              >
+                {t.getStarted}
+                <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {(active === "SanadPay" ? t.sanadpay.features : active === "Sanadak" ? t.sanadak.features : t.sanadnotify.features).map((f) => (
+                <div key={f.title} className="p-4 bg-background rounded-lg">
+                  <h4 className="font-semibold text-foreground mb-1">{f.title}</h4>
+                  <p className="text-sm text-gray-200">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </AnimatedSection>
+
+        {/* Featured Product - SanadPay */}
 
         {/* Other Products */}
         <div className="grid md:grid-cols-2 gap-8">
@@ -180,8 +181,8 @@ export function ProductsSection() {
                     className="inline-flex items-center gap-2 mt-8 text-primary font-medium hover:gap-3 transition-all"
                   >
                     {t.learnMore}
-                    <HugeIcon name="arrow-right" size={18} />
-                  </Link>
+                    <HugeIcon name="arrow-right" size={18} className={cn(isRTL && "rotate-180")} />
+                  </Link> 
                 </div>
               </AnimatedSection>
             ))}

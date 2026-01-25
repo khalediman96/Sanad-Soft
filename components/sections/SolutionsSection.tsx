@@ -102,12 +102,12 @@ export function SolutionsSection() {
         <AnimatedSection animation="fade-up" delay={0.4}>
           <div className="mt-20 text-start">
             <p className="text-gray-200 mb-8">{t.partnersText}</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-              {["Visa", "Mastercard", "MTN", "Sudatel", "Bank of Khartoum", "Faisal Bank"].map(
+            <div className="flex flex-wrap justify-start items-center gap-8 md:gap-12 opacity-60">
+              { ["Visa", "Mastercard", "MTN", "Sudatel", "Bank of Khartoum", "Faisal Bank"].map(
                 (partner) => (
                   <span
                     key={partner}
-                    className="text-lg font-semibold text-gray-200 hover:text-primary transition-colors"
+                    className="text-lg font-semibold text-gray-200 hover:text-primary transition-colors text-start"
                   >
                     {partner}
                   </span>

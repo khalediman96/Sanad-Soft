@@ -105,19 +105,7 @@ export function Header() {
               )}
               aria-label="Toggle language"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                />
-              </svg>
+             <HugeIcon name="globe" size={20} strokeWidth={2} />
               <span className="text-sm font-medium">{language === "en" ? "AR" : "EN"}</span>
             </button>
             
@@ -131,7 +119,7 @@ export function Header() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="md:hidden z-[100] flex items-center gap-3">
+          <div className="md:hidden z-[10001] flex items-center gap-3">
             <button
               onClick={toggleLanguage}
               className="flex items-center gap-1 px-2 py-1 rounded-lg text-white hover:bg-white/10 transition-colors"
@@ -140,7 +128,8 @@ export function Header() {
               <span className="text-xs font-medium">{language === "en" ? "AR" : "EN"}</span>
             </button>
             
-            <Hamburger
+            <div className="z-[10002]">
+              <Hamburger
               toggled={isOpen}
               toggle={setIsOpen}
               size={24}
@@ -148,6 +137,7 @@ export function Header() {
               label="Toggle menu"
               rounded
             />
+            </div>
           </div>
         </nav>
       </div>
@@ -162,7 +152,7 @@ export function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black md:hidden"
+              className="fixed inset-0 bg-black/60 md:hidden z-[9998]"
               onClick={() => setIsOpen(false)}
             />
 
@@ -173,7 +163,7 @@ export function Header() {
               exit={{ x: isRTL ? "-100%" : "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className={cn(
-                "fixed top-0 bottom-0 w-[280px] bg-[#1e293b] shadow-xl md:hidden z-50",
+                "fixed top-0 bottom-0 w-[280px] bg-[#1e293b] shadow-xl md:hidden z-[9999]",
                 isRTL ? "left-0" : "right-0"
               )}
             >

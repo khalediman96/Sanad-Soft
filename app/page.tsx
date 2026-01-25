@@ -2,6 +2,7 @@ import { Header, Footer } from "@/components/layout";
 import {
   HeroSection,
   AboutSection,
+  JourneySection,
   ProductsSection,
   ServicesSection,
   SolutionsSection,
@@ -16,6 +17,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <AboutSection />
+        <JourneySection />
         <ProductsSection />
         <ServicesSection />
         <SolutionsSection />
