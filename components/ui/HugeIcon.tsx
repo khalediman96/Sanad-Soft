@@ -13,6 +13,8 @@ export type IconName =
   | "arrow-right"
   | "check"
   | "credit-card"
+  | "card"
+  | "qr-code"
   | "bank"
   | "lock"
   | "users"
@@ -22,6 +24,10 @@ export type IconName =
   | "menu"
   | "close"
   | "chevron-down"
+  | "bell"
+  | "calendar"
+  | "template"
+  | "webhook"
   | "facebook"
   | "twitter"
   | "linkedin"
@@ -55,10 +61,23 @@ const iconPaths: Record<IconName, string> = {
     "M20 6 9 17l-5-5",
   "credit-card":
     "M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm0 5h18M7 15h2m4 0h4",
+  // alias: allow `card` name in some product feature arrays
+  card:
+    "M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm0 5h18M7 15h2m4 0h4",
+  "qr-code":
+    "M3 3h6v6H3V3Zm8 0h4v4h-4V3ZM3 11h4v4H3v-4Zm8 6h4v4h-4v-4Zm6-6h2v2h-2v-2Zm0 6h2v2h-2v-2Z",
   bank:
     "M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3",
   lock:
     "M5 11V7a7 7 0 0 1 14 0v4M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Zm7 5v2",
+  bell:
+    "M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 1 0-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h11Z",
+  calendar:
+    "M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z",
+  template:
+    "M3 4h18v16H3V4Zm4 4h10v8H7V8Z",
+  webhook:
+    "M7 7l3 3-3 3M17 7l-3 3 3 3M12 3v18",
   users:
     "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m14-11a4 4 0 1 0-8 0 4 4 0 0 0 8 0Zm6 11v-2a4 4 0 0 0-3-3.9m-1-8.1a4 4 0 0 1 0 7.8",
   lightning:
