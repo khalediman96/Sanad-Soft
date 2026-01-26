@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 import { cn } from "@/lib/utils";
 
 interface ContactInfo {
@@ -14,27 +13,26 @@ interface ContactInfo {
 }
 
 export function ContactSection() {
-  const { language, isRTL } = useLanguage();
-  const t = translations[language].contact;
+  const { language, isRTL, t } = useLanguage();
   
   const contactInfo: ContactInfo[] = [
     {
       icon: "location",
-      label: t.info.visit,
-      value: t.info.address,
+      label: t('contact.info.visit'),
+      value: t('contact.info.address'),
       href: "https://maps.google.com",
     },
     {
       icon: "mail",
-      label: t.info.email,
-      value: t.info.emailAddress,
-      href: `mailto:${t.info.emailAddress}`,
+      label: t('contact.info.email'),
+      value: t('contact.info.emailAddress'),
+      href: `mailto:${t('contact.info.emailAddress')}`,
     },
     {
       icon: "phone",
-      label: t.info.call,
-      value: t.info.phone,
-      href: `tel:${t.info.phone.replace(/\s/g, "")}`,
+      label: t('contact.info.call'),
+      value: t('contact.info.phone'),
+      href: `tel:${t('contact.info.phone').replace(/\s/g, "")}`,
     },
   ];
 
@@ -79,20 +77,20 @@ export function ContactSection() {
         <div className="max-w-3xl mb-16">
           <AnimatedSection animation="fade-up">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider text-start block">
-              {t.subtitle}
+              {t('contact.subtitle')}
             </span>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-              {t.title}{" "}
-              <span className="gradient-text">{t.titleHighlight}</span>
+              {t('contact.title')}{" "}
+              <span className="gradient-text">{t('contact.titleHighlight')}</span>
             </h2>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.2}>
             <p className="text-lg text-gray-200 text-start">
-              {t.description}
+              {t('contact.description')}
             </p>
           </AnimatedSection>
         </div>
@@ -127,13 +125,13 @@ export function ContactSection() {
               <div className="p-6 bg-gradient-to-br from-primary to-primary-dark rounded-2xl text-white">
                 <h3 className="font-semibold mb-4 flex items-center gap-2 text-start">
                   <HugeIcon name="clock" size={20} />
-                  {t.officeHours}
+                  {t('contact.officeHours')}
                 </h3>
                 <div className="space-y-2 text-white/90">
-                  <p className="text-start">{t.hours.weekdays}</p>
-                  <p className="text-start">{t.hours.weekend}</p>
+                  <p className="text-start">{t('contact.hours.weekdays')}</p>
+                  <p className="text-start">{t('contact.hours.weekend')}</p>
                   <p className="pt-2 border-t border-white/20 mt-4 text-start">
-                    <strong>{t.hours.support}</strong> {t.hours.supportDesc}
+                    <strong>{t('contact.hours.support')}</strong> {t('contact.hours.supportDesc')}
                   </p>
                 </div>
               </div>
@@ -149,10 +147,10 @@ export function ContactSection() {
                     <HugeIcon name="check" size={32} className="text-green-600" />
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-3 text-start">
-                    {t.success.title}
+                    {t('contact.success.title')}
                   </h3>
                   <p className="text-gray-200 text-start">
-                    {t.success.description}
+                    {t('contact.success.description')}
                   </p>
                 </div>
               ) : (
@@ -163,7 +161,7 @@ export function ContactSection() {
                         htmlFor="name"
                         className="block text-sm font-medium text-foreground mb-2 text-start"
                       >
-                        {t.form.name} *
+                        {t('contact.form.name')} *
                       </label>
                       <input
                         type="text"
@@ -173,7 +171,7 @@ export function ContactSection() {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
-                        placeholder={t.form.namePlaceholder}
+                        placeholder={t('contact.form.namePlaceholder')}
                       />
                     </div>
                     <div>
@@ -181,7 +179,7 @@ export function ContactSection() {
                         htmlFor="email"
                         className="block text-sm font-medium text-foreground mb-2 text-start"
                       >
-                        {t.form.email} *
+                        {t('contact.form.email')} *
                       </label>
                       <input
                         type="email"
@@ -191,7 +189,7 @@ export function ContactSection() {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
-                        placeholder={t.form.emailPlaceholder}
+                        placeholder={t('contact.form.emailPlaceholder')}
                       />
                     </div>
                   </div>
@@ -202,7 +200,7 @@ export function ContactSection() {
                         htmlFor="company"
                         className="block text-sm font-medium text-foreground mb-2 text-start"
                       >
-                        {t.form.company}
+                        {t('contact.form.company')}
                       </label>
                       <input
                         type="text"
@@ -211,7 +209,7 @@ export function ContactSection() {
                         value={formData.company}
                         onChange={handleChange}
                         className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
-                        placeholder={t.form.companyPlaceholder}
+                        placeholder={t('contact.form.companyPlaceholder')}
                       />
                     </div>
                     <div>
@@ -219,7 +217,7 @@ export function ContactSection() {
                         htmlFor="subject"
                         className="block text-sm font-medium text-foreground mb-2 text-start"
                       >
-                        {t.form.subject} *
+                        {t('contact.form.subject')} *
                       </label>
                       <select
                         id="subject"
@@ -229,12 +227,12 @@ export function ContactSection() {
                         required
                         className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
                       >
-                        <option value="">{t.form.selectSubject}</option>
-                        <option value="sanadpay">{t.form.subjects.sanadpay}</option>
-                        <option value="partnership">{t.form.subjects.partnership}</option>
-                        <option value="support">{t.form.subjects.support}</option>
-                        <option value="demo">{t.form.subjects.demo}</option>
-                        <option value="other">{t.form.subjects.other}</option>
+                        <option value="">{t('contact.form.selectSubject')}</option>
+                        <option value="sanadpay">{t('contact.form.subjects.sanadpay')}</option>
+                        <option value="partnership">{t('contact.form.subjects.partnership')}</option>
+                        <option value="support">{t('contact.form.subjects.support')}</option>
+                        <option value="demo">{t('contact.form.subjects.demo')}</option>
+                        <option value="other">{t('contact.form.subjects.other')}</option>
                       </select>
                     </div>
                   </div>
@@ -244,7 +242,7 @@ export function ContactSection() {
                       htmlFor="message"
                       className="block text-sm font-medium text-foreground mb-2 text-start"
                     >
-                      {t.form.message} *
+                      {t('contact.form.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -254,7 +252,7 @@ export function ContactSection() {
                       required
                       rows={5}
                       className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none text-start"
-                      placeholder={t.form.messagePlaceholder}
+                      placeholder={t('contact.form.messagePlaceholder')}
                     />
                   </div>
 
@@ -288,11 +286,11 @@ export function ContactSection() {
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                           />
                         </svg>
-                        {t.form.sending}
+                        {t('contact.form.sending')}
                       </>
                     ) : (
                       <>
-                        {t.form.send}
+                        {t('contact.form.send')}
                         <HugeIcon name="arrow-right" size={20} className={cn(isRTL && "rotate-180")} />
                       </>
                     )}

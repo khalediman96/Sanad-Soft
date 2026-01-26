@@ -16,8 +16,10 @@ export function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
     >
-      {/* Smokey animated background (like Lightswind UI "Smokey Background") */}
+      {/* Smokey animated background from Lightswind UI */}
       <SmokeyBackground />
+      {/* Dark overlay to keep content readable (same visual as before) */}
+      <div className="absolute inset-0 bg-black/60" />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">

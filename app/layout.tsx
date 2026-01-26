@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Cairo } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/lib/LanguageContext";
+import { LanguageProvider } from "@/context/useLanguage";
 
 const inter = Inter({
   variable: "--font-inter",

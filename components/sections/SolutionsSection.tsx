@@ -1,12 +1,10 @@
 "use client";
 
 import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 
 export function SolutionsSection() {
-  const { language } = useLanguage();
-  const t = translations[language].solutions;
+  const { language, t } = useLanguage();
 
   interface Solution {
     industry: string;
@@ -16,7 +14,15 @@ export function SolutionsSection() {
     benefits: string[];
   }
 
-  const solutions: Solution[] = t.items.map((item, i) => ({
+  type RawSolution = {
+    industry: string;
+    title: string;
+    desc: string;
+    benefits: string[];
+  };
+
+  const items = (t('solutions.items') as unknown as RawSolution[]) || [];
+  const solutions: Solution[] = items.map((item, i) => ({
     industry: item.industry,
     icon: ["bank", "credit-card", "wallet", "phone", "shield", "globe"][i] as IconName,
     title: item.title,
@@ -34,20 +40,20 @@ export function SolutionsSection() {
         <div className="max-w-3xl mb-16">
           <AnimatedSection animation="fade-up">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider text-start block">
-              {t.subtitle}
+              {t('solutions.subtitle')}
             </span>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-              {t.title}{" "}
-              <span className="gradient-text">{t.titleHighlight}</span>
+              {t('solutions.title')}{" "}
+              <span className="gradient-text">{t('solutions.titleHighlight')}</span>
             </h2>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.2}>
             <p className="text-lg text-gray-200 text-start">
-              {t.description}
+              {t('solutions.description')}
             </p>
           </AnimatedSection>
         </div>
@@ -101,7 +107,7 @@ export function SolutionsSection() {
         {/* Integration Partners */}
         <AnimatedSection animation="fade-up" delay={0.4}>
           <div className="mt-20 text-start">
-            <p className="text-gray-200 mb-8">{t.partnersText}</p>
+            <p className="text-gray-200 mb-8">{t('solutions.partnersText')}</p>
             <div className="flex flex-wrap justify-start items-center gap-8 md:gap-12 opacity-60">
               { ["Visa", "Mastercard", "MTN", "Sudatel", "Bank of Khartoum", "Faisal Bank"].map(
                 (partner) => (

@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { HugeIcon, type IconName } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 
 interface SocialLink {
   icon: IconName;
@@ -19,33 +18,51 @@ const socialLinks: SocialLink[] = [
 ];
 
 export function Footer() {
-  const { language } = useLanguage();
-  const t = translations[language].footer;
+  const { language, t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
-  const footerSections = [
-    {
-      title: t.sections.products.title,
-      links: t.sections.products.links.map((label, i) => ({
-        label,
-        href: "#products",
-      })),
-    },
-    {
-      title: t.sections.company.title,
-      links: t.sections.company.links.map((label, i) => ({
-        label,
-        href: i === 0 ? "#about" : "#",
-      })),
-    },
-    {
-      title: t.sections.resources.title,
-      links: t.sections.resources.links.map((label, i) => ({
-        label,
-        href: i >= 2 ? "#contact" : "#",
-      })),
-    },
-  ];
+  interface FooterSectionLink {
+    label: string;
+    href: string;
+  }
+
+  interface FooterSection {
+    title: string;
+    links: FooterSectionLink[];
+  }
+
+  const footerSections: FooterSection[] = (() => {
+    const toArray = (v: unknown): string[] =>
+      Array.isArray(v) ? v : typeof v === "string" ? [v] : [];
+
+    const productLinks = toArray(t('footer.sections.products.links'));
+    const companyLinks = toArray(t('footer.sections.company.links'));
+    const resourcesLinks = toArray(t('footer.sections.resources.links'));
+
+    return [
+      {
+        title: t('footer.sections.products.title') as string,
+        links: productLinks.map((label: string): FooterSectionLink => ({
+          label,
+          href: "#products",
+        })),
+      },
+      {
+        title: t('footer.sections.company.title') as string,
+        links: companyLinks.map((label: string, i: number): FooterSectionLink => ({
+          label,
+          href: i === 0 ? "#about" : "#",
+        })),
+      },
+      {
+        title: t('footer.sections.resources.title') as string,
+        links: resourcesLinks.map((label: string, i: number): FooterSectionLink => ({
+          label,
+          href: i >= 2 ? "#contact" : "#",
+        })),
+      },
+    ];
+  })();
 
   return (
     <footer className="bg-secondary text-white">
@@ -59,7 +76,7 @@ export function Footer() {
               <span className="text-white">Soft</span>
             </Link>
             <p className="text-muted-foreground max-w-sm mb-6 text-start">
-              {t.description}
+              {t('footer.description')}
             </p>
             
             {/* Social Links */}
@@ -86,16 +103,23 @@ export function Footer() {
                 {section.title}
               </h3>
               <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-muted-foreground hover:text-primary transition-colors text-start block"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {(() => {
+                  interface FooterLink {
+                    label: string;
+                    href: string;
+                  }
+
+                  return section.links.map((link: FooterLink) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-muted-foreground hover:text-primary transition-colors text-start block"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ));
+                })()}
               </ul>
             </div>
           ))}
@@ -106,7 +130,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
             <p className="text-muted-foreground text-sm text-start">
-              © {currentYear} {t.copyright}
+              © {currentYear} {t('footer.copyright')}
             </p>
 
             {/* Contact Info */}
@@ -130,10 +154,10 @@ export function Footer() {
             {/* Legal Links */}
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <Link href="#" className="hover:text-primary transition-colors">
-                {t.legal.privacy}
+                {t('footer.legal.privacy')}
               </Link>
               <Link href="#" className="hover:text-primary transition-colors">
-                {t.legal.terms}
+                {t('footer.legal.terms')}
               </Link>
             </div>
           </div>

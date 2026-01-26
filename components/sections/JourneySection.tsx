@@ -1,12 +1,11 @@
 "use client";
 
 import { AnimatedSection, HugeIcon } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 
 export function JourneySection() {
-  const { language } = useLanguage();
-  const t = translations[language].journey;
+  const { language, t } = useLanguage();
+  const items = (t('journey.items') as unknown as { year: string; title: string; desc: string }[]) ?? [];
 
   return (
     <section id="journey" className="py-20 md:py-28 bg-background">
@@ -14,13 +13,13 @@ export function JourneySection() {
         <div className="max-w-3xl mb-12">
           <AnimatedSection animation="fade-up">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider text-start block">
-              {t.subtitle}
+              {t('journey.subtitle')}
             </span>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-              {t.title} <span className="text-primary">{t.titleHighlight}</span>
+              {t('journey.title')} <span className="text-primary">{t('journey.titleHighlight')}</span>
             </h2>
           </AnimatedSection>
         </div>
@@ -30,7 +29,7 @@ export function JourneySection() {
             <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-white/10 hidden md:block" />
 
             <div className="space-y-8 md:space-y-12">
-              {t.items.map((item, idx) => (
+              {items.map((item, idx) => (
                 <div key={item.year} className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
                   {/* Year marker */}
                   <div className="md:w-1/2 md:flex md:justify-end md:pr-8">

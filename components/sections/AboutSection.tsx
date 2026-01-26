@@ -1,8 +1,7 @@
 "use client";
 
 import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 
 interface Stat {
   value: string;
@@ -11,14 +10,13 @@ interface Stat {
 }
 
 export function AboutSection() {
-  const { language } = useLanguage();
-  const t = translations[language].about;
+    const { language, t } = useLanguage();
 
   const stats: Stat[] = [
-    { value: "500+", label: t.stats.businesses, icon: "users" },
-    { value: "$50M+", label: t.stats.transactions, icon: "chart" },
-    { value: "99.9%", label: t.stats.uptime, icon: "clock" },
-    { value: "15+", label: t.stats.countries, icon: "globe" },
+    { value: "500+", label: t('about.stats.businesses'), icon: "users" },
+    { value: "$50M+", label: t('about.stats.transactions'), icon: "chart" },
+    { value: "99.9%", label: t('about.stats.uptime'), icon: "clock" },
+    { value: "15+", label: t('about.stats.countries'), icon: "globe" },
   ];
 
   return (
@@ -29,33 +27,33 @@ export function AboutSection() {
           <div>
             <AnimatedSection animation="fade-up">
               <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                {t.subtitle}
+                {t('about.subtitle')}
               </span>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={0.1}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-                {t.title}{" "}
-                <span className="gradient-text">{t.titleHighlight}</span>
+                {t('about.title')}{" "}
+                <span className="gradient-text">{t('about.titleHighlight')}</span>
               </h2>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={0.2}>
               <p className="text-lg text-gray-200 mb-6 text-start">
-                {t.paragraph1}
+                {t('about.paragraph1')}
               </p>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={0.3}>
               <p className="text-gray-200 mb-8 text-start">
-                {t.paragraph2} <strong className="text-primary">{t.paragraph2Bold}</strong>{t.paragraph2End}
+                {t('about.paragraph2')} <strong className="text-primary">{t('about.paragraph2Bold')}</strong>{t('about.paragraph2End')}
               </p>
             </AnimatedSection>
 
             {/* Key Points */}
             <AnimatedSection animation="fade-up" delay={0.4}>
               <div className="space-y-4">
-                {t.points.map((point, index) => (
+                {(t('about.points') as unknown as string[]).map((point, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <HugeIcon name="check" size={14} className="text-primary" />
@@ -95,9 +93,9 @@ export function AboutSection() {
             {/* Mission Statement */}
             <AnimatedSection animation="fade-up" delay={0.4}>
               <div className="mt-8 bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 text-white">
-                <h3 className="text-xl font-bold mb-3 text-start">{t.missionTitle}</h3>
+                <h3 className="text-xl font-bold mb-3 text-start">{t('about.missionTitle')}</h3>
                 <p className="text-white/90 text-start">
-                  {t.mission}
+                  {t('about.mission')}
                 </p>
               </div>
             </AnimatedSection>

@@ -1,13 +1,11 @@
 "use client";
 
 import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 import { cn } from "@/lib/utils";
 
 export function ServicesSection() {
-  const { language, isRTL } = useLanguage();
-  const t = translations[language].services;
+  const { language, isRTL, t } = useLanguage();
 
   interface Service {
     icon: IconName;
@@ -16,7 +14,13 @@ export function ServicesSection() {
     features: string[];
   }
 
-  const services: Service[] = t.items.map((item, i) => ({
+  // t(...) may be typed as string; ensure we have an array before mapping
+  const rawItems = t('services.items') as unknown;
+  const items = Array.isArray(rawItems)
+    ? (rawItems as { title: string; desc: string; features: string[] }[])
+    : [];
+
+  const services: Service[] = items.map((item, i) => ({
     icon: ["credit-card", "wallet", "bank", "shield", "chart", "lightning"][i] as IconName,
     title: item.title,
     description: item.desc,
@@ -30,20 +34,20 @@ export function ServicesSection() {
         <div className="max-w-3xl mb-16">
           <AnimatedSection animation="fade-up">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider text-start block">
-              {t.subtitle}
+              {t('services.subtitle')}
             </span>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-              {t.title}{" "}
-              <span className="gradient-text">{t.titleHighlight}</span>
+              {t('services.title')}{" "}
+              <span className="gradient-text">{t('services.titleHighlight')}</span>
             </h2>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.2}>
             <p className="text-lg text-gray-200 text-start">
-              {t.description}
+              {t('services.description')}
             </p>
           </AnimatedSection>
         </div>
@@ -90,16 +94,16 @@ export function ServicesSection() {
         <AnimatedSection animation="fade-up" delay={0.3}>
           <div className="mt-16 bg-gradient-to-r from-secondary to-secondary/90 rounded-3xl p-8 md:p-12 text-start">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {t.ctaTitle}
+              {t('services.ctaTitle')}
             </h3>
             <p className="text-white/80 max-w-2xl mb-8">
-              {t.ctaDesc}
+              {t('services.ctaDesc')}
             </p>
             <a
               href="#contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all hover:shadow-lg"
             >
-              {t.ctaButton}
+              {t('services.ctaButton')}
               <HugeIcon name="arrow-right" size={20} className={cn(isRTL && "rotate-180")} />
             </a>
           </div>

@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { AnimatedSection, HugeIcon } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 import {
   ThreeDScrollTriggerContainer,
   ThreeDScrollTriggerRow,
@@ -82,11 +81,18 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   );
 }
 
-export function TestimonialsSection() {
-  const { language } = useLanguage();
-  const t = translations[language].testimonials;
+interface TestimonialItem {
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+}
 
-  const testimonials: Testimonial[] = t.items.map((item, i) => ({
+export function TestimonialsSection() {
+  const { language, t } = useLanguage();
+
+  const testimonialItems = t('testimonials.items') as unknown as TestimonialItem[];
+  const testimonials: Testimonial[] = testimonialItems.map((item, i) => ({
     id: i + 1,
     name: item.name,
     role: item.role,
@@ -103,20 +109,20 @@ export function TestimonialsSection() {
         <div className="max-w-3xl mb-16">
           <AnimatedSection animation="fade-up">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider text-start block">
-              {t.subtitle}
+              {t('testimonials.subtitle')}
             </span>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-              {t.title}{" "}
-              <span className="text-primary">{t.titleHighlight}</span>
+              {t('testimonials.title')}{" "}
+              <span className="text-primary">{t('testimonials.titleHighlight')}</span>
             </h2>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.2}>
             <p className="text-lg text-muted-foreground text-start">
-              {t.description}
+              {t('testimonials.description')}
             </p>
           </AnimatedSection>
         </div>
@@ -149,10 +155,10 @@ export function TestimonialsSection() {
         <AnimatedSection animation="fade-up" delay={0.4}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-white/10">
             {[
-              { value: "4.9/5", label: t.stats.rating },
-              { value: "98%", label: t.stats.satisfaction },
-              { value: "500+", label: t.stats.clients },
-              { value: "24/7", label: t.stats.support },
+              { value: "4.9/5", label: t('testimonials.stats.rating') },
+              { value: "98%", label: t('testimonials.stats.satisfaction') },
+              { value: "500+", label: t('testimonials.stats.clients') },
+              { value: "24/7", label: t('testimonials.stats.support') },
             ].map((stat) => (
               <div key={stat.label} className="text-start">
                 <p className="text-3xl md:text-4xl font-bold text-primary mb-2">

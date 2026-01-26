@@ -6,29 +6,26 @@ import { Squash as Hamburger } from "hamburger-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { HugeIcon } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
+import { useLanguage } from "@/context/useLanguage";
 
 interface NavItem {
-  label: {
-    en: string;
-    ar: string;
-  };
+  key: string;
   href: string;
 }
 
 const navItems: NavItem[] = [
-  { label: { en: "Home", ar: "الرئيسية" }, href: "#home" },
-  { label: { en: "About", ar: "من نحن" }, href: "#about" },
-  { label: { en: "Products", ar: "المنتجات" }, href: "#products" },
-  { label: { en: "Services", ar: "الخدمات" }, href: "#services" },
-  { label: { en: "Solutions", ar: "الحلول" }, href: "#solutions" },
-  { label: { en: "Contact", ar: "اتصل بنا" }, href: "#contact" },
+  { key: "nav.home", href: "#home" },
+  { key: "nav.about", href: "#about" },
+  { key: "nav.products", href: "#products" },
+  { key: "nav.features", href: "#services" },
+  { key: "nav.solutions", href: "#solutions" },
+  { key: "nav.contact", href: "#contact" },
 ];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { language, toggleLanguage, isRTL } = useLanguage();
+  const { language, toggleLanguage, isRTL, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,7 +86,7 @@ export function Header() {
                     scrolled ? "text-foreground" : "text-foreground"
                   )}
                 >
-                  {item.label[language]}
+                  {t(item.key)}
                 </Link>
               </li>
             ))}
@@ -113,7 +110,7 @@ export function Header() {
               href="#contact"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-medium text-sm rounded-full hover:bg-primary-dark transition-colors"
             >
-              {language === "en" ? "Get Started" : "ابدأ الآن"}
+              {t('nav.getStarted')}
               <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />
             </Link>
           </div>
@@ -181,7 +178,7 @@ export function Header() {
                         onClick={handleNavClick}
                         className="block py-3 px-4 text-white font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
                       >
-                        {item.label[language]}
+                        {t(item.key)}
                       </Link>
                     </motion.li>
                   ))}
@@ -193,7 +190,7 @@ export function Header() {
                     onClick={handleNavClick}
                     className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-primary text-white font-medium rounded-full hover:bg-primary-dark transition-colors"
                   >
-                    {language === "en" ? "Get Started" : "ابدأ الآن"}
+                    {t('nav.getStarted')}
                     <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />
                   </Link>
                 </div>

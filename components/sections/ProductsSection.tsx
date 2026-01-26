@@ -3,13 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
+import { useLanguage } from "@/context/useLanguage";
 import { cn } from "@/lib/utils";
-import { translations } from "@/lib/translations";
 
 export function ProductsSection() {
-  const { language, isRTL } = useLanguage();
-  const t = translations[language].products;
+  const { language, isRTL, t } = useLanguage();
   const [active, setActive] = useState("SanadPay");
 
   interface ProductFeature {
@@ -29,9 +27,9 @@ export function ProductsSection() {
   const products: Product[] = [
     {
       name: "SanadPay",
-      tagline: t.sanadpay.tagline,
-      description: t.sanadpay.description,
-      features: t.sanadpay.features.map((f, i) => ({
+      tagline: t('products.sanadpay.tagline') as string,
+      description: t('products.sanadpay.description') as string,
+      features: (t('products.sanadpay.features') as unknown as { title: string; desc: string }[]).map((f, i) => ({
         icon: ["wallet", "credit-card", "shield", "lightning", "chart", "globe"][i] as IconName,
         title: f.title,
         description: f.desc,
@@ -39,26 +37,38 @@ export function ProductsSection() {
       isFeatured: true,
     },
     {
-      name: "SanadMerchant",
-      tagline: t.merchant.tagline,
-      description: t.merchant.description,
-      features: t.merchant.features.map((f, i) => ({
-        icon: ["bank", "users", "chart"][i] as IconName,
+      name: "Sanadak",
+      tagline: t('products.sanadak.tagline') as string,
+      description: t('products.sanadak.description') as string,
+      features: (t('products.sanadak.features') as unknown as { title: string; desc: string }[]).map((f, i) => ({
+        icon: ["wallet", "qr-code", "card", "card", "chart", "users"][i] as IconName,
         title: f.title,
         description: f.desc,
       })),
     },
     {
-      name: "SanadBusiness",
-      tagline: t.business.tagline,
-      description: t.business.description,
-      features: t.business.features.map((f, i) => ({
-        icon: ["lock", "lightning", "users"][i] as IconName,
+      name: "SanadNotify",
+      tagline: t('products.sanadnotify.tagline') as string,
+      description: t('products.sanadnotify.description') as string,
+      features: (t('products.sanadnotify.features') as unknown as { title: string; desc: string }[]).map((f, i) => ({
+        icon: ["bell", "calendar", "users", "chart", "template", "webhook"][i] as IconName,
         title: f.title,
         description: f.desc,
       })),
     },
   ];
+
+  const getSelectedFeatures = (): { title: string; desc: string }[] => {
+    const res =
+      active === "SanadPay"
+        ? t('products.sanadpay.features')
+        : active === "Sanadak"
+        ? t('products.sanadak.features')
+        : t('products.sanadnotify.features');
+
+    if (typeof res === "string") return [];
+    return res as { title: string; desc: string }[];
+  };
 
   return (
     <section id="products" className="py-20 md:py-28 bg-gradient-to-b from-background to-primary/5">
@@ -67,20 +77,20 @@ export function ProductsSection() {
         <div className="max-w-3xl mb-16">
           <AnimatedSection animation="fade-up">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider text-start block">
-              {t.subtitle}
+              {t('products.subtitle')}
             </span>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.1}>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-              {t.title}{" "}
-              <span className="gradient-text">{t.titleHighlight}</span>
+              {t('products.title')}{" "}
+              <span className="gradient-text">{t('products.titleHighlight')}</span>
             </h2>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.2}>
             <p className="text-lg text-gray-200 text-start">
-              {t.description}
+              {t('products.description')}
             </p>
           </AnimatedSection>
         </div>
@@ -89,9 +99,9 @@ export function ProductsSection() {
         <AnimatedSection animation="fade-up" delay={0.25}>
           <div className="flex gap-3 mb-8">
             {[
-              { id: "SanadPay", label: t.buttons.sanadpay },
-              { id: "Sanadak", label: t.buttons.sanadak },
-              { id: "SanadNotify", label: t.buttons.sanadnotify },
+              { id: "SanadPay", label: t('products.buttons.sanadpay') },
+              { id: "Sanadak", label: t('products.buttons.sanadak') },
+              { id: "SanadNotify", label: t('products.buttons.sanadnotify') },
             ].map((opt) => (
               <button
                 key={opt.id}
@@ -115,24 +125,25 @@ export function ProductsSection() {
                   {active === "SanadPay" ? "SanadPay" : active === "Sanadak" ? "Sanadak" : "SanadNotify"}
                 </h3>
                 <p className="text-gray-200 mt-2 max-w-2xl text-start">
-                  {active === "SanadPay"
-                    ? t.sanadpay.description
-                    : active === "Sanadak"
-                    ? t.sanadak.description
-                    : t.sanadnotify.description}
-                </p>
+                    {active === "SanadPay"
+                      ? t('products.sanadpay.description')
+                      : active === "Sanadak"
+                      ? t('products.sanadak.description')
+                      : t('products.sanadnotify.description')}
+                  </p>
               </div>
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-center font-semibold rounded-full hover:bg-primary-dark transition-all whitespace-nowrap"
               >
-                {t.getStarted}
+                {t('products.getStarted')}
                 <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />
               </Link>
             </div>
 
             <div className="grid md:grid-cols-3 gap-4">
-              {(active === "SanadPay" ? t.sanadpay.features : active === "Sanadak" ? t.sanadak.features : t.sanadnotify.features).map((f) => (
+              {getSelectedFeatures().map((f) => (
+                 
                 <div key={f.title} className="p-4 bg-background rounded-lg">
                   <h4 className="font-semibold text-foreground mb-1">{f.title}</h4>
                   <p className="text-sm text-gray-200">{f.desc}</p>
@@ -180,7 +191,7 @@ export function ProductsSection() {
                     href="#contact"
                     className="inline-flex items-center gap-2 mt-8 text-primary font-medium hover:gap-3 transition-all"
                   >
-                    {t.learnMore}
+                    {t('products.learnMore')}
                     <HugeIcon name="arrow-right" size={18} className={cn(isRTL && "rotate-180")} />
                   </Link> 
                 </div>
