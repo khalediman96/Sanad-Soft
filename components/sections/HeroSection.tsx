@@ -3,32 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { HugeIcon } from "@/components/ui";
+import { HugeIcon, SmokeyBackground } from "@/components/ui";
 import { AnimatedSection } from "@/components/ui";
-import { useLanguage } from "@/lib/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useLanguage } from "@/context/useLanguage";
 import { cn } from "@/lib/utils";
 
 export function HeroSection() {
-  const { language, isRTL } = useLanguage();
-  const t = translations[language].hero;
+  const { language, isRTL, t } = useLanguage();
 
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
     >
-      {/* Background Image + Subtle Overlay */}
-      <div className="absolute inset-0 -z-20">
-        <Image
-          src="/bg-img.jpg"
-          alt="Hero background"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/80" />
-      </div>
+      {/* Smokey animated background (like Lightswind UI "Smokey Background") */}
+      <SmokeyBackground />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -65,22 +54,22 @@ export function HeroSection() {
             <AnimatedSection animation="fade-up" delay={0}>
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full mb-6">
                 <HugeIcon name="lightning" size={16} />
-                {t.badge}
+                {t('hero.badge')}
               </span>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={0.1}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-start">
-                {t.title}{" "}
-                <span className="gradient-text">{t.titleHighlight}</span>
+                {t('hero.title')}{" "}
+                <span className="gradient-text">{t('hero.titleHighlight')}</span>
               </h1>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={0.2}>
               <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto lg:mx-0 mb-8 text-start">
-                {t.description}{" "}
-                <strong className="text-primary">{t.descriptionBold}</strong>
-                {t.descriptionEnd}
+                {t('hero.description')}{" "}
+                <strong className="text-primary">{t('hero.descriptionBold')}</strong>
+                {t('hero.descriptionEnd')}
               </p>
             </AnimatedSection>
 
@@ -92,14 +81,14 @@ export function HeroSection() {
                   href="#products"
                   className="inline-flex w-full md:w-auto items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/25"
                 >
-                  {t.ctaPrimary}
+                  {t('hero.ctaPrimary')}
                   <HugeIcon name="arrow-right" size={20} className={cn(isRTL && "rotate-180")} />
                 </Link>
                 <Link
                   href="#contact"
                   className="inline-flex w-full md:w-auto items-center justify-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-colors"
                 >
-                  {t.ctaSecondary}
+                  {t('hero.ctaSecondary')}
                 </Link>
               </div>
             </AnimatedSection>
@@ -109,15 +98,15 @@ export function HeroSection() {
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-12">
                 <div className="flex items-center gap-2 text-sm text-gray-200">
                   <HugeIcon name="shield" size={20} className="text-primary" />
-                  <span>{t.badge1}</span>
+                  <span>{t('hero.badge1')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-200">
                   <HugeIcon name="lock" size={20} className="text-primary" />
-                  <span>{t.badge2}</span>
+                  <span>{t('hero.badge2')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-200">
                   <HugeIcon name="clock" size={20} className="text-primary" />
-                  <span>{t.badge3}</span>
+                  <span>{t('hero.badge3')}</span>
                 </div>
               </div>
             </AnimatedSection>
@@ -166,7 +155,7 @@ export function HeroSection() {
           href="#about"
           className="flex flex-col items-center gap-2 text-gray-200 hover:text-primary transition-colors"
         >
-          <span className="text-sm">{t.scrollDown}</span>
+          <span className="text-sm">{t('hero.scrollDown')}</span>
           <HugeIcon name="chevron-down" size={24} />
         </Link>
       </motion.div>
