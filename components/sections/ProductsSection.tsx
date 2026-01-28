@@ -118,7 +118,7 @@ export function ProductsSection() {
             ))}          </div>
 
           {/* Selected Product Panel */}
-          <div className="bg-white dark:bg-card border border-border rounded-2xl p-6 md:p-8 mb-8">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-8 mb-8">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
               <div>
                 <h3 className="text-2xl font-bold text-foreground text-start">
@@ -166,7 +166,7 @@ export function ProductsSection() {
                 animation={index % 2 === 0 ? "fade-right" : "fade-left"}
                 delay={0.2}
               >
-                <div className="bg-white dark:bg-card border border-border rounded-2xl p-8 h-full hover:shadow-lg hover:border-primary/30 transition-all">
+                <div className="bg-card border border-border rounded-2xl p-8 h-full hover:shadow-lg hover:border-primary/30 transition-all">
                   <span className="text-primary text-sm font-medium text-start block">{product.tagline}</span>
                   <h3 className="text-2xl font-bold text-foreground mt-2 mb-3 text-start">
                     {product.name}

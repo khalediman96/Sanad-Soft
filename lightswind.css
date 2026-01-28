@@ -12,51 +12,49 @@
    1. CSS Variables for Theming
    ========================================================================== */
 
-/* Light (default) theme variables */
+/* Dark (only) theme variables */
 :root {
   --primarylw: #173eff;
   --primarylw-2: #3758f9;
   --darklw: #11131b;
   --darklw-2: #1a1d25;
 
-  /* HSL values for theme colors */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 0%;
+  /* HSL values for theme colors in dark mode */
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 0%;
+  --card: 0 0% 5%;
+  --card-foreground: 0 0% 100%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 0%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 100%;
 
-  --primary: 0 0% 0%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
 
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 0%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 65%;
 
-  --accent: 0 0% 96%;
-  --accent-foreground: 0 0% 0%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84% 60%;
+  --destructive: 0 62% 30%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 0%;
+  --border: #000;
+  /* Direct hex for dark border */
+  --input: 0 0% 20%;
+  --ring: 0 0% 20%;
 
-  --radius: 0.5rem;
-  /* For rounded corners */
+  /* Scrollbar colors for dark mode */
+  --scrollbar-thumb: 0 0% 25%;
+  --scrollbar-track: 0 0% 10%;
+  --scrollbar-hover: 0 0% 35%;
 
-  /* Scrollbar colors */
-  --scrollbar-thumb: 0 0% 75%;
-  --scrollbar-track: 0 0% 95%;
-  --scrollbar-hover: 0 0% 65%;
-
-  /* Custom named colors */
+  /* Custom named colors (same as light, but can be overridden if needed) */
   --greedy: #07eae6ff;
 }
 

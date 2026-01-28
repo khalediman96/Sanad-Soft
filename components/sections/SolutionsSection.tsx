@@ -66,7 +66,7 @@ export function SolutionsSection() {
               animation="fade-up"
               delay={0.1 * (index % 3)}
             >
-              <div className="bg-white dark:bg-card border border-border rounded-2xl p-8 h-full hover:shadow-xl hover:border-primary/30 transition-all group relative overflow-hidden">
+              <div className="bg-card border border-border rounded-2xl p-8 h-full hover:shadow-xl hover:border-primary/30 transition-all group relative overflow-hidden">
                 {/* Background Accent */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full group-hover:bg-primary/10 transition-colors" />
 

@@ -105,7 +105,7 @@ export function ContactSection() {
                   href={info.href}
                   target={info.icon === "location" ? "_blank" : undefined}
                   rel={info.icon === "location" ? "noopener noreferrer" : undefined}
-                  className="flex items-start gap-4 p-6 bg-white dark:bg-card border border-border rounded-2xl hover:shadow-lg hover:border-primary/30 transition-all group"
+                  className="flex items-start gap-4 p-6 bg-card border border-border rounded-2xl hover:shadow-lg hover:border-primary/30 transition-all group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
                     <HugeIcon
@@ -140,7 +140,7 @@ export function ContactSection() {
 
           {/* Contact Form */}
           <AnimatedSection animation="fade-left" delay={0.3} className="lg:col-span-3">
-            <div className="bg-white dark:bg-card border border-border rounded-2xl p-8 md:p-10">
+            <div className="bg-card border border-border rounded-2xl p-8 md:p-10">
               {isSubmitted ? (
                 <div className="text-start py-12">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center me-auto mb-6">

@@ -72,7 +72,7 @@ export function AboutSection() {
                 {stats.map((stat, index) => (
                   <div
                     key={stat.label}
-                    className="bg-white dark:bg-card border border-border rounded-2xl p-6 text-start hover:shadow-lg hover:border-primary/30 transition-all group"
+                    className="bg-card border border-border rounded-2xl p-6 text-start hover:shadow-lg hover:border-primary/30 transition-all group"
                   >
                     <div className="w-14 h-14 me-auto mb-4 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
                       <HugeIcon

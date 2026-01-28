@@ -60,7 +60,7 @@ export function ServicesSection() {
               animation="fade-up"
               delay={0.1 * (index % 3)}
             >
-              <div className="bg-white dark:bg-card border border-border rounded-2xl p-8 h-full hover:shadow-xl hover:border-primary/30 transition-all group">
+              <div className="bg-card border border-border rounded-2xl p-8 h-full hover:shadow-xl hover:border-primary/30 transition-all group">
                 {/* Icon */}
                 <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all">
                   <HugeIcon

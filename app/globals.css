@@ -1,17 +1,17 @@
 @import 'tailwindcss';
 @plugin 'lightswind/plugin';
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: #0f172a;
+  --foreground: #f1f5f9;
   --primary: #2cbfae;
   --primary-dark: #22a092;
   --primary-light: #5ed4c6;
   --secondary: #1e293b;
-  --muted: #64748b;
+  --muted: #475569;
   --muted-foreground: #94a3b8;
-  --border: #e2e8f0;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
+  --border: #334155;
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
 }
 
 @theme inline {
@@ -29,22 +29,6 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-cairo: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --primary: #2cbfae;
-    --primary-dark: #22a092;
-    --primary-light: #5ed4c6;
-    --secondary: #1e293b;
-    --muted: #475569;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-    --card: #1e293b;
-    --card-foreground: #f1f5f9;
-  }
 }
 
 * {
