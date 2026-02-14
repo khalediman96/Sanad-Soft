@@ -28,8 +28,28 @@ export function ServicesSection() {
   }));
 
   return (
-    <section id="services" className="py-20 md:py-28 bg-background">
-      <div className="container-custom">
+    <section id="services" className="py-20 md:py-28 bg-background relative overflow-hidden">
+      {/* Background image with vignette */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{
+          backgroundImage: 'url(/services-img.png)',
+          backgroundAttachment: 'fixed',
+        }}
+      />
+      
+      {/* Circular vignette overlay */}
+      <div 
+        className="absolute inset-0" 
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.4) 30%, rgba(15, 23, 42, 0.85) 60%, rgba(15, 23, 42, 0.95) 100%)',
+        }}
+      />
+      
+      {/* Top gradient decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
+      
+      <div className="container-custom relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <AnimatedSection animation="fade-up">
