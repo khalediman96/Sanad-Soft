@@ -18,7 +18,7 @@ export function ClientsSection() {
     <section id="clients" className="py-20 md:py-28 bg-background">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="text-start mb-16">
           <AnimatedSection animation="fade-up">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider">
               {t('clients.subtitle')}
