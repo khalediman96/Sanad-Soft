@@ -133,6 +133,118 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Timeline (Journey) */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 6px;
+  background: linear-gradient(180deg, rgba(44,191,174,0.18), rgba(34,160,146,0.12));
+  border-radius: 9999px;
+  box-shadow: 0 8px 30px rgba(44,191,174,0.06), inset 0 0 10px rgba(255,255,255,0.02);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+@media (max-width: 767px) {
+  .timeline-line { display: none; }
+}
+.timeline-connector {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 6px;
+  background: linear-gradient(90deg, rgba(44,191,174,0.95), rgba(34,160,146,0.6));
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(44,191,174,0.08);
+  z-index: 30;
+}
+.timeline-card {
+  transition: transform .28s cubic-bezier(.22,.9,.3,1), box-shadow .28s;
+  will-change: transform;
+  transform-origin: center;
+  z-index: 20;
+}
+.timeline-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(2,6,23,0.6);
+}
+
+/* Clients carousel */
+.clients-carousel {
+  padding: 2rem 1rem;
+  overflow: hidden;
+}
+
+.clients-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.clients-item {
+  flex: 0 0 auto;
+  width: 280px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.clients-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .clients-track {
+    gap: 2rem;
+  }
+  .clients-item {
+    width: 240px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clients-carousel {
+    padding: 1.5rem 0.5rem;
+  }
+  .clients-track {
+    gap: 1.5rem;
+  }
+  .clients-item {
+    width: 200px;
+    height: 100px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .clients-carousel {
+    padding: 1rem 0.25rem;
+  }
+  .clients-track {
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .clients-item {
+    width: 100%;
+    max-width: 250px;
+    height: 100px;
+  }
+}
+
 /* RTL Support */
 [dir="rtl"] {
   direction: rtl;

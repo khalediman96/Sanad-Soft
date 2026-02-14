@@ -7,8 +7,10 @@ import {
   ServicesSection,
   SolutionsSection,
   TestimonialsSection,
-  ContactSection,
+  ContactSection
 } from "@/components/sections";
+import ClientsSection from "@/components/sections/ClientsSection";
+
 
 export default function Home() {
   return (
@@ -16,6 +18,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <ClientsSection />
         <AboutSection />
         <JourneySection />
         <ProductsSection />

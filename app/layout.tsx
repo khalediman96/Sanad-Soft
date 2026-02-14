@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Cairo } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/useLanguage";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${cairo.variable} font-cairo antialiased`}>
         <LanguageProvider>
           {children}
+          <ScrollToTopButton />
         </LanguageProvider>
       </body>
     </html>

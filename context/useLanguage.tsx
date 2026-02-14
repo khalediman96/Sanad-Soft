@@ -322,6 +322,11 @@ const translations = {
       ],
       partnersText: 'Integrated with leading platforms and partners',
     },
+    clients: {
+      subtitle: 'Our Partners',
+      title: 'Trusted by',
+      description: 'Leading banks, financial institutions, and technology partners across the region.',
+    },
     testimonials: {
       subtitle: 'Testimonials',
       title: 'Trusted by',
@@ -665,6 +670,11 @@ const translations = {
         },
       ],
       partnersText: 'متكامل مع المنصات والشركاء الرائدين',
+    },
+    clients: {
+      subtitle: 'شركاؤنا',
+      title: 'موثوق به من قبل',
+      description: 'البنوك الرائدة والمؤسسات المالية والشركاء التكنولوجيين عبر المنطقة.',
     },
     testimonials: {
       subtitle: 'آراء العملاء',

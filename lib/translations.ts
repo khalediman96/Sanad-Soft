@@ -205,6 +205,12 @@ export const translations = {
       ],
     },
 
+    // Clients Section
+    clients: {
+      title: "Our Partners",
+      description: "Trusted by leading banks, financial institutions, and technology partners across the region.",
+    },
+
     // Testimonials Section
     testimonials: {
       subtitle: "Testimonials",
@@ -525,6 +531,12 @@ export const translations = {
         { year: "2023", title: "إطلاق ساند نوتيفاي", desc: "أكملنا نظامنا البيئي بخدمة الإشعارات" },
         { year: "2024", title: "التوسع الإقليمي", desc: "وسعنا وجودنا عبر المنطقة" },
       ],
+    },
+
+    // Clients Section
+    clients: {
+      title: "شركاؤنا",
+      description: "موثوق به من قبل البنوك الرائدة والمؤسسات المالية والشركاء التكنولوجيين عبر المنطقة.",
     },
 
     // Testimonials Section
