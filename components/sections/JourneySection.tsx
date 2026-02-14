@@ -14,18 +14,17 @@ export function JourneySection() {
     <section id="journey" className="py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Background image with vignette */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 md:opacity-30 bg-image-fixed"
         style={{
           backgroundImage: 'url(/timeline-img.jpg)',
-          backgroundAttachment: 'fixed',
         }}
       />
       
-      {/* Circular vignette overlay */}
+      {/* Circular vignette overlay - adjusted for mobile */}
       <div 
         className="absolute inset-0" 
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.4) 30%, rgba(15, 23, 42, 0.85) 60%, rgba(15, 23, 42, 0.95) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.5) 30%, rgba(15, 23, 42, 0.9) 60%, rgba(15, 23, 42, 0.98) 100%)',
         }}
       />
       

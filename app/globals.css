@@ -134,6 +134,17 @@ body {
 }
 
 /* Timeline (Journey) */
+/* Background image fixed attachment for desktop */
+.bg-image-fixed {
+  background-attachment: scroll;
+}
+
+@media (min-width: 768px) {
+  .bg-image-fixed {
+    background-attachment: fixed;
+  }
+}
+
 /* Modern Timeline Styles */
 .timeline-line-modern {
   position: absolute;
