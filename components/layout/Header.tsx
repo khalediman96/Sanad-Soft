@@ -53,91 +53,99 @@ export function Header() {
   };
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "dark:bg-secondary/5 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-      )}
-    >
-      <div className="container-custom">
-        <nav className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link
-            href="#home"
-            className="flex items-center gap-2 text-xl font-bold"
-            onClick={handleNavClick}
-          >
-            <Image src="/logos/sanadlogo.svg" alt="Sanad Soft Logo" width={160} height={100} className="object-contain" />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "relative text-sm font-medium transition-colors hover:text-primary",
-                    "after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full",
-                    scrolled ? "text-foreground" : "text-foreground"
-                  )}
-                >
-                  {t(item.key)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {/* CTA & Language Toggle (Desktop) */}
-          <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={toggleLanguage}
-              className={cn(
-                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all",
-                "hover:bg-primary/10 text-foreground hover:text-primary"
-              )}
-              aria-label="Toggle language"
-            >
-             <HugeIcon name="globe" size={20} strokeWidth={2} />
-              <span className="text-sm font-medium">{language === "en" ? "AR" : "EN"}</span>
-            </button>
-            
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-[10000] transition-all duration-300",
+          scrolled
+            ? "dark:bg-secondary/5 backdrop-blur-md shadow-lg"
+            : "bg-transparent"
+        )}
+      >
+        <div className="container-custom">
+          <nav className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
             <Link
-              href="#contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-medium text-sm rounded-full hover:bg-primary-dark transition-colors"
+              href="#home"
+              className="flex items-center gap-2 text-xl font-bold"
+              onClick={handleNavClick}
             >
-              {t('nav.getStarted')}
-              <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />
+              <Image 
+                src={isRTL ? "/logos/sanadlogo-ar.svg" : "/logos/sanadlogo.svg"} 
+                alt="Sanad Soft Logo" 
+                width={160} 
+                height={100} 
+                className="object-contain" 
+              />
             </Link>
-          </div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden z-[10001] flex items-center gap-3">
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center gap-1 px-2 py-1 rounded-lg text-white hover:bg-white/10 transition-colors"
-              aria-label="Toggle language"
-            >
-              <span className="text-xs font-medium">{language === "en" ? "AR" : "EN"}</span>
-            </button>
-            
-            <div className="z-[10002]">
-              <Hamburger
-              toggled={isOpen}
-              toggle={setIsOpen}
-              size={24}
-              color="#ffffff"
-              label="Toggle menu"
-              rounded
-            />
+            {/* Desktop Navigation */}
+            <ul className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "relative text-sm font-medium transition-colors hover:text-primary",
+                      "after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full",
+                      scrolled ? "text-foreground" : "text-foreground"
+                    )}
+                  >
+                    {t(item.key)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA & Language Toggle (Desktop) */}
+            <div className="hidden md:flex items-center gap-4">
+              <button
+                onClick={toggleLanguage}
+                className={cn(
+                  "flex items-center gap-2 px-3 py-2 rounded-lg transition-all",
+                  "hover:bg-primary/10 text-foreground hover:text-primary"
+                )}
+                aria-label="Toggle language"
+              >
+               <HugeIcon name="globe" size={20} strokeWidth={2} />
+                <span className="text-sm font-medium">{language === "en" ? "AR" : "EN"}</span>
+              </button>
+              
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-medium text-sm rounded-full hover:bg-primary-dark transition-colors"
+              >
+                {t('nav.getStarted')}
+                <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />
+              </Link>
             </div>
-          </div>
-        </nav>
-      </div>
 
-      {/* Mobile Navigation Drawer */}
+            {/* Mobile Menu Toggle */}
+            <div className="md:hidden relative z-[10001] flex items-center gap-3">
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1 px-2 py-1 rounded-lg text-white hover:bg-white/10 transition-colors relative z-[10001]"
+                aria-label="Toggle language"
+              >
+                <span className="text-xs font-medium">{language === "en" ? "AR" : "EN"}</span>
+              </button>
+              
+              <div className="relative z-[10002]">
+                <Hamburger
+                toggled={isOpen}
+                toggle={setIsOpen}
+                size={24}
+                color="#ffffff"
+                label="Toggle menu"
+                rounded
+              />
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      {/* Mobile Navigation Drawer - Outside header to avoid blur effect */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -157,8 +165,9 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: isRTL ? "-100%" : "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              style={{ backgroundColor: '#0f172a' }}
               className={cn(
-                "fixed top-0 bottom-0 w-[280px] bg-[#1e293b] shadow-xl md:hidden z-[9999]",
+                "fixed top-0 bottom-0 w-[280px] shadow-xl md:hidden z-[9999]",
                 isRTL ? "left-0" : "right-0"
               )}
             >
@@ -197,7 +206,7 @@ export function Header() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
 
