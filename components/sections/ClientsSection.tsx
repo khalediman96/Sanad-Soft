@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/useLanguage";
 
 // Three featured partners
 const logos = [
-  { src: "/logos/bankofKhartoum.svg", name: "Bank of Khartoum" },
+  { src: "/logos/bankofkhartoum.svg", name: "Bank of Khartoum" },
   { src: "/logos/ElNileinBank.svg", name: "Bank of Nile" },
   { src: "/logos/sanadPay.svg", name: "Sanad Wallet" },
 ];
