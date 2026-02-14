@@ -1,85 +1,118 @@
 "use client";
 
-import { AnimatedSection, HugeIcon } from "@/components/ui";
+import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
 import { useLanguage } from "@/context/useLanguage";
 import { cn } from "@/lib/utils";
+
+const milestoneIcons: IconName[] = ["users", "lightning", "wallet", "bell", "globe"];
 
 export function JourneySection() {
   const { language, t } = useLanguage();
   const items = (t('journey.items') as unknown as { year: string; title: string; desc: string }[]) ?? [];
 
   return (
-    <section id="journey" className="py-20 md:py-28 bg-background">
-      <div className="container-custom">
-        <div className="max-w-3xl mb-12">
+    <section id="journey" className="py-20 md:py-28 bg-background relative overflow-hidden">
+      {/* Background image with vignette */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{
+          backgroundImage: 'url(/timeline-img.jpg)',
+          backgroundAttachment: 'fixed',
+        }}
+      />
+      
+      {/* Circular vignette overlay */}
+      <div 
+        className="absolute inset-0" 
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.4) 30%, rgba(15, 23, 42, 0.85) 60%, rgba(15, 23, 42, 0.95) 100%)',
+        }}
+      />
+      
+      {/* Top gradient decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
+      
+      <div className="container-custom relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-16">
           <AnimatedSection animation="fade-up">
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider text-start block">
+            <span className="text-primary font-semibold text-sm uppercase tracking-wider">
               {t('journey.subtitle')}
             </span>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={0.1}>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-start">
-              {t('journey.title')} <span className="text-primary">{t('journey.titleHighlight')}</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+              {t('journey.title')} <span className="gradient-text">{t('journey.titleHighlight')}</span>
             </h2>
           </AnimatedSection>
         </div>
 
-        <AnimatedSection animation="fade-up" delay={0.2}>
-          <div className="relative">
-            <div className="timeline-line" />
+        <div className="relative max-w-6xl mx-auto z-10">
+          {/* Animated central line */}
+          <div className="timeline-line-modern" />
 
-            <div className="space-y-8 md:space-y-12">
-              {items.map((item, idx) => (
+          <div className="space-y-0">
+            {items.map((item, idx) => (
+              <AnimatedSection 
+                key={item.year}
+                animation={idx % 2 === 0 ? "fade-right" : "fade-left"}
+                delay={idx * 0.15}
+              >
                 <div
-                  key={item.year}
                   className={cn(
-                    "group flex flex-col md:flex-row md:items-start gap-4 md:gap-8",
+                    "group relative flex flex-col md:flex-row md:items-center gap-6 md:gap-0 py-8 md:py-12",
                     idx % 2 === 1 && "md:flex-row-reverse"
                   )}
                 >
-                  {/* Year marker */}
-                  <div
-                    className={cn(
-                      "md:w-1/2 md:flex relative",
-                      idx % 2 === 0 ? "md:justify-end md:pr-8" : "md:justify-start md:pl-8"
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        "flex items-center gap-4 relative",
-                        idx % 2 === 0 ? "md:justify-end" : "md:justify-start"
-                      )}
-                    >
-                      <div className="relative">
-                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-dark text-white font-bold text-lg flex items-center justify-center shadow-xl ring-4 ring-primary/10 transition-transform transform-gpu group-hover:scale-105">
-                          <span className="tracking-wide">{item.year}</span>
-                        </div>
+                  {/* Content Card */}
+                  <div className="md:w-[calc(50%-3rem)] relative">
+                    <div className={cn(
+                      "timeline-card-modern backdrop-blur-sm bg-gradient-to-br from-slate-800/40 to-slate-900/60 border border-primary/20 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-primary/20 transition-all duration-500 group-hover:border-primary/40",
+                      idx % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
+                    )}>
+                      {/* Icon */}
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <HugeIcon name={milestoneIcons[idx % milestoneIcons.length]} size={24} strokeWidth={2} className="text-white" />
+                      </div>
+                      
+                      {/* Year badge */}
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-3">
+                        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                        <span className="text-primary font-bold text-sm">{item.year}</span>
+                      </div>
+                      
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-300 leading-relaxed">
+                        {item.desc}
+                      </p>
+                      
+                      {/* Decorative line */}
+                      <div className={cn(
+                        "absolute top-1/2 w-8 h-0.5 bg-gradient-to-r from-primary/60 to-transparent hidden md:block",
+                        idx % 2 === 0 ? "left-full ml-0" : "right-full mr-0"
+                      )} />
+                    </div>
+                  </div>
 
-                        <div
-                          className="timeline-connector hidden md:block"
-                          style={
-                            idx % 2 === 0
-                              ? { right: 'calc(50% - 3rem)', width: 'calc(50% - 3rem)' }
-                              : { left: 'calc(50% - 3rem)', width: 'calc(50% - 3rem)' }
-                          }
-                        />
+                  {/* Central dot indicator */}
+                  <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                    <div className="relative">
+                      {/* Outer glow ring */}
+                      <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl animate-pulse" />
+                      
+                      {/* Main dot */}
+                      <div className="relative w-6 h-6 rounded-full bg-gradient-to-br from-primary via-primary-dark to-primary border-4 border-background shadow-lg group-hover:scale-125 transition-transform duration-300">
+                        <div className="absolute inset-0 rounded-full bg-white/20 animate-ping" />
                       </div>
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <div className="md:w-1/2">
-                    <div className={cn("timeline-card bg-card border border-border rounded-2xl p-6 md:p-8 shadow-md transition-all duration-300", idx % 2 === 1 && "md:text-end") }>
-                      <h3 className={cn("text-xl font-semibold text-foreground mb-2 text-start", idx % 2 === 1 && "md:text-end")}>{item.title}</h3>
-                      <p className={cn("text-muted-foreground text-start", idx % 2 === 1 && "md:text-end")}>{item.desc}</p>
-                    </div>
-                  </div>
                 </div>
-              ))}
-            </div>
+              </AnimatedSection>
+            ))}
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );
