@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { HugeIcon } from "@/components/ui";
 import { useLanguage } from "@/context/useLanguage";
+import Image from "next/image";
 
 interface NavItem {
   key: string;
@@ -68,10 +69,7 @@ export function Header() {
             className="flex items-center gap-2 text-xl font-bold"
             onClick={handleNavClick}
           >
-            <span className="text-primary">Sanad</span>
-            <span className={cn(scrolled ? "text-foreground" : "text-foreground")}>
-              Soft
-            </span>
+            <Image src="/logos/sanadlogo.svg" alt="Sanad Soft Logo" width={160} height={100} className="object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
