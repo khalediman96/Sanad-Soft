@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { HugeIcon, type IconName } from "@/components/ui";
 import { useLanguage } from "@/context/useLanguage";
 
@@ -65,41 +66,101 @@ export function Footer() {
   })();
 
   return (
-    <footer className="bg-secondary text-white">
-      <div className="container-custom py-16">
+    <footer className="bg-secondary text-white relative">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-0 left-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+          }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-10 w-96 h-96 bg-primary-dark/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+          }}
+        />
+      </div>
+
+      <div className="container-custom py-16 relative z-10">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand Section */}
-          <div className="lg:col-span-2">
-            <Link href="#home" className="inline-block text-2xl font-bold mb-4">
-              <span className="text-primary">Sanad</span>
-              <span className="text-white">Soft</span>
-            </Link>
-            <p className="text-muted-foreground max-w-sm mb-6 text-start">
+          <motion.div
+            className="lg:col-span-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Link href="#home" className="inline-block text-2xl font-bold mb-4 group">
+                <span className="text-primary group-hover:text-primary-dark transition-colors">Sanad</span>
+                <span className="text-white">Soft</span>
+              </Link>
+            </motion.div>
+            <motion.p
+              className="text-gray-400 max-w-sm mb-6 text-start"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+            >
               {t('footer.description')}
-            </p>
+            </motion.p>
             
             {/* Social Links */}
             <div className="flex items-center gap-4">
-              {socialLinks.map((social) => (
-                <a
+              {socialLinks.map((social, idx) => (
+                <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-primary hover:text-white transition-colors"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-700/60 to-slate-800/60 border border-primary/20 text-white hover:border-primary/50 transition-all group relative overflow-hidden"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.2, rotate: 10 }}
                 >
-                  <HugeIcon name={social.icon} size={18} />
-                </a>
+                  {/* Hover Background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="relative z-10">
+                    <HugeIcon name={social.icon} size={18} />
+                  </div>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Links Sections */}
-          {footerSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-start">
+          {footerSections.map((section, sectionIdx) => (
+            <motion.div
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: sectionIdx * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-start text-white">
                 {section.title}
               </h3>
               <ul className="space-y-3">
@@ -109,59 +170,116 @@ export function Footer() {
                     href: string;
                   }
 
-                  return section.links.map((link: FooterLink) => (
-                    <li key={link.label}>
+                  return section.links.map((link: FooterLink, linkIdx: number) => (
+                    <motion.li
+                      key={link.label}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: sectionIdx * 0.1 + linkIdx * 0.05 }}
+                      viewport={{ once: true }}
+                    >
                       <Link
                         href={link.href}
-                        className="text-muted-foreground hover:text-primary transition-colors text-start block"
+                        className="text-gray-400 hover:text-primary transition-colors text-start block relative w-fit group"
                       >
-                        {link.label}
+                        <span className="group-hover:text-primary">{link.label}</span>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                       </Link>
-                    </li>
+                    </motion.li>
                   ));
                 })()}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 mt-12 pt-8">
+        <motion.div
+          className="border-t border-white/10 mt-12 pt-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          viewport={{ once: true }}
+        >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
-            <p className="text-muted-foreground text-sm text-start">
+            <motion.p
+              className="text-gray-400 text-sm text-start"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+            >
               © {currentYear} {t('footer.copyright')}
-            </p>
+            </motion.p>
 
             {/* Contact Info */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-              <a
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <motion.a
                 href="mailto:info@sanadsoft.com"
-                className="flex items-center gap-2 hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors group"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
               >
-                <HugeIcon name="mail" size={16} />
-                Info@sanadsoft.com
-              </a>
-              <a
+                <motion.div
+                  whileHover={{ rotate: 10 }}
+                >
+                  <HugeIcon name="mail" size={16} />
+                </motion.div>
+                <span>Info@sanadsoft.com</span>
+              </motion.a>
+              <motion.a
                 href="tel:+249123456789"
-                className="flex items-center gap-2 hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors group"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
               >
-                <HugeIcon name="phone" size={16} />
-                +249 123 456 789
-              </a>
+                <motion.div
+                  whileHover={{ rotate: -10 }}
+                >
+                  <HugeIcon name="phone" size={16} />
+                </motion.div>
+                <span>+249 123 456 789</span>
+              </motion.a>
             </div>
 
             {/* Legal Links */}
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <Link href="#" className="hover:text-primary transition-colors">
-                {t('footer.legal.privacy')}
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                {t('footer.legal.terms')}
-              </Link>
+            <div className="flex items-center gap-4 text-sm text-gray-400">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.55 }}
+                viewport={{ once: true }}
+              >
+                <Link href="#" className="relative group">
+                  <span className="group-hover:text-primary transition-colors">
+                    {t('footer.legal.privacy')}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <Link href="#" className="relative group">
+                  <span className="group-hover:text-primary transition-colors">
+                    {t('footer.legal.terms')}
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                </Link>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

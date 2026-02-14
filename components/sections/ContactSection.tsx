@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatedSection, HugeIcon, type IconName } from "@/components/ui";
+import { AnimatedSection, HugeIcon, CustomSelect, type IconName, type SelectOption } from "@/components/ui";
 import { useLanguage } from "@/context/useLanguage";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+
 
 interface ContactInfo {
   icon: IconName;
@@ -99,170 +101,225 @@ export function ContactSection() {
           {/* Contact Info */}
           <AnimatedSection animation="fade-right" delay={0.2} className="lg:col-span-2">
             <div className="space-y-6">
-              {contactInfo.map((info) => (
-                <a
+              {contactInfo.map((info, idx) => (
+                <motion.a
                   key={info.label}
                   href={info.href}
                   target={info.icon === "location" ? "_blank" : undefined}
                   rel={info.icon === "location" ? "noopener noreferrer" : undefined}
-                  className="flex items-start gap-4 p-6 bg-card border border-border rounded-2xl hover:shadow-lg hover:border-primary/30 transition-all group"
+                  className="group relative overflow-hidden block mb-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4 }}
                 >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
-                    <HugeIcon
-                      name={info.icon}
-                      size={24}
-                      className="text-primary group-hover:text-white transition-colors"
-                    />
+                  {/* Gradient border */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-primary-dark/20 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-300 -z-10" />
+                  
+                  <div className="flex items-start gap-4 p-6 bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-primary/20 rounded-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm group-hover:shadow-xl group-hover:shadow-primary/20">
+                    <motion.div 
+                      className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center flex-shrink-0"
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                    >
+                      <HugeIcon name={info.icon} size={24} className="text-white" />
+                    </motion.div>
+                    <div>
+                      <p className="text-xs text-gray-400 mb-1 text-start uppercase tracking-widest font-semibold">{info.label}</p>
+                      <p className="font-medium text-white text-start">{info.value}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-200 mb-1 text-start">{info.label}</p>
-                    <p className="font-medium text-foreground text-start">{info.value}</p>
-                  </div>
-                </a>
+                </motion.a>
               ))}
 
               {/* Office Hours */}
-              <div className="p-6 bg-gradient-to-br from-primary to-primary-dark rounded-2xl text-white">
+              <motion.div 
+                className="p-6 bg-gradient-to-br from-primary/60 to-primary-dark/60 border border-primary/40 rounded-2xl text-white backdrop-blur-sm"
+                whileHover={{ scale: 1.02 }}
+              >
                 <h3 className="font-semibold mb-4 flex items-center gap-2 text-start">
                   <HugeIcon name="clock" size={20} />
                   {t('contact.officeHours')}
                 </h3>
                 <div className="space-y-2 text-white/90">
-                  <p className="text-start">{t('contact.hours.weekdays')}</p>
-                  <p className="text-start">{t('contact.hours.weekend')}</p>
-                  <p className="pt-2 border-t border-white/20 mt-4 text-start">
-                    <strong>{t('contact.hours.support')}</strong> {t('contact.hours.supportDesc')}
-                  </p>
+                  <p className="text-start text-sm">{t('contact.hours.weekdays')}</p>
+                  <p className="text-start text-sm">{t('contact.hours.weekend')}</p>
+                  <div className="pt-2 border-t border-white/20 mt-4 text-start">
+                    <p className="text-sm"><strong>{t('contact.hours.support')}</strong></p>
+                    <p className="text-xs text-white/70">{t('contact.hours.supportDesc')}</p>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </AnimatedSection>
 
           {/* Contact Form */}
           <AnimatedSection animation="fade-left" delay={0.3} className="lg:col-span-3">
-            <div className="bg-card border border-border rounded-2xl p-8 md:p-10">
+            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-3xl p-8 md:p-10 backdrop-blur-sm hover:border-primary/40 transition-all duration-300">
               {isSubmitted ? (
-                <div className="text-start py-12">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center me-auto mb-6">
-                    <HugeIcon name="check" size={32} className="text-green-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-3 text-start">
+                <motion.div 
+                  className="text-start py-12"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                >
+                  <motion.div 
+                    className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center me-auto mb-6"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                  >
+                    <HugeIcon name="check" size={32} className="text-white" />
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-white mb-3 text-start">
                     {t('contact.success.title')}
                   </h3>
-                  <p className="text-gray-200 text-start">
+                  <p className="text-gray-300 text-start">
                     {t('contact.success.description')}
                   </p>
-                </div>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-foreground mb-2 text-start"
-                      >
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                    >
+                      <label htmlFor="name" className="block text-sm font-medium text-white mb-2 text-start">
                         {t('contact.form.name')} *
                       </label>
-                      <input
+                      <motion.input
                         type="text"
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
+                        className="w-full px-4 py-3 bg-slate-900/50 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-slate-900 transition-all text-start text-white placeholder:text-gray-500"
                         placeholder={t('contact.form.namePlaceholder')}
+                        whileFocus={{ scale: 1.02 }}
                       />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-foreground mb-2 text-start"
-                      >
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      <label htmlFor="email" className="block text-sm font-medium text-white mb-2 text-start">
                         {t('contact.form.email')} *
                       </label>
-                      <input
+                      <motion.input
                         type="email"
                         id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
+                        className="w-full px-4 py-3 bg-slate-900/50 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-slate-900 transition-all text-start text-white placeholder:text-gray-500"
                         placeholder={t('contact.form.emailPlaceholder')}
+                        whileFocus={{ scale: 1.02 }}
                       />
-                    </div>
+                    </motion.div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="company"
-                        className="block text-sm font-medium text-foreground mb-2 text-start"
-                      >
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <label htmlFor="company" className="block text-sm font-medium text-white mb-2 text-start">
                         {t('contact.form.company')}
                       </label>
-                      <input
+                      <motion.input
                         type="text"
                         id="company"
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
+                        className="w-full px-4 py-3 bg-slate-900/50 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-slate-900 transition-all text-start text-white placeholder:text-gray-500"
                         placeholder={t('contact.form.companyPlaceholder')}
+                        whileFocus={{ scale: 1.02 }}
                       />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="subject"
-                        className="block text-sm font-medium text-foreground mb-2 text-start"
-                      >
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
+                      viewport={{ once: true }}
+                    >
+                      <label className="block text-sm font-medium text-white mb-2 text-start">
                         {t('contact.form.subject')} *
                       </label>
-                      <select
-                        id="subject"
-                        name="subject"
+                      <CustomSelect
                         value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors text-start"
-                      >
-                        <option value="">{t('contact.form.selectSubject')}</option>
-                        <option value="sanadpay">{t('contact.form.subjects.sanadpay')}</option>
-                        <option value="partnership">{t('contact.form.subjects.partnership')}</option>
-                        <option value="support">{t('contact.form.subjects.support')}</option>
-                        <option value="demo">{t('contact.form.subjects.demo')}</option>
-                        <option value="other">{t('contact.form.subjects.other')}</option>
-                      </select>
-                    </div>
+                        onChange={(value) =>
+                          setFormData((prev) => ({ ...prev, subject: value }))
+                        }
+                        options={[
+                          {
+                            value: "sanadpay",
+                            label: t('contact.form.subjects.sanadpay'),
+                          },
+                          {
+                            value: "partnership",
+                            label: t('contact.form.subjects.partnership'),
+                          },
+                          {
+                            value: "support",
+                            label: t('contact.form.subjects.support'),
+                          },
+                          {
+                            value: "demo",
+                            label: t('contact.form.subjects.demo'),
+                          },
+                          {
+                            value: "other",
+                            label: t('contact.form.subjects.other'),
+                          },
+                        ]}
+                        placeholder={t('contact.form.selectSubject')}
+                      />
+                    </motion.div>
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-foreground mb-2 text-start"
-                    >
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    viewport={{ once: true }}
+                  >
+                    <label htmlFor="message" className="block text-sm font-medium text-white mb-2 text-start">
                       {t('contact.form.message')} *
                     </label>
-                    <textarea
+                    <motion.textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none text-start"
+                      className="w-full px-4 py-3 bg-slate-900/50 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-slate-900 transition-all resize-none text-start text-white placeholder:text-gray-500"
                       placeholder={t('contact.form.messagePlaceholder')}
+                      whileFocus={{ scale: 1.02 }}
                     />
-                  </div>
+                  </motion.div>
 
-                  <button
+                  <motion.button
                     type="submit"
                     disabled={isSubmitting}
                     className={cn(
-                      "w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-all",
+                      "w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/50 transition-all",
                       isSubmitting && "opacity-70 cursor-not-allowed"
                     )}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                    viewport={{ once: true }}
                   >
                     {isSubmitting ? (
                       <>
@@ -294,7 +351,7 @@ export function ContactSection() {
                         <HugeIcon name="arrow-right" size={20} className={cn(isRTL && "rotate-180")} />
                       </>
                     )}
-                  </button>
+                  </motion.button>
                 </form>
               )}
             </div>
