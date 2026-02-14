@@ -54,6 +54,7 @@ export const translations = {
       getStarted: "Get Started",
       learnMore: "Learn More",
       sanadpay: {
+        name: "SanadPay",
         tagline: "Your Complete Payment Solution",
         description: "A comprehensive digital wallet and payment gateway designed specifically for the MENA market. Process payments, manage funds, and scale your business with enterprise-grade security.",
         features: [
@@ -84,6 +85,7 @@ export const translations = {
         ],
       },
       sanadak: {
+        name: "Sanadak",
         tagline: "Microfinance & Savings",
         description: "Tools for microfinance, savings plans, and small business credit to empower communities and SMEs.",
         features: [
@@ -93,6 +95,7 @@ export const translations = {
         ],
       },
       sanadnotify: {
+        name: "SanadNotify",
         tagline: "Real-time Alerts & Notifications",
         description: "Real-time transaction alerts, webhooks, and delivery channels to keep customers and systems instantly informed.",
         features: [
@@ -382,6 +385,7 @@ export const translations = {
       getStarted: "ابدأ الآن",
       learnMore: "اعرف المزيد",
       sanadpay: {
+        name: "ساند باي",
         tagline: "حل الدفع الكامل الخاص بك",
         description: "محفظة رقمية شاملة وبوابة دفع مصممة خصيصاً لسوق الشرق الأوسط وشمال أفريقيا. معالجة المدفوعات، إدارة الأموال، وتوسيع نطاق عملك بأمان على مستوى المؤسسات.",
         features: [
@@ -412,6 +416,7 @@ export const translations = {
         ],
       },
       sanadak: {
+        name: "سانداك",
         tagline: "التمويل المصغر والادخار",
         description: "أدوات للتمويل المصغر وخطط الادخار والائتمان للشركات الصغيرة لدعم المجتمعات والمؤسسات الصغيرة.",
         features: [
@@ -421,6 +426,7 @@ export const translations = {
         ],
       },
       sanadnotify: {
+        name: "ساند نوتيفاي",
         tagline: "التنبيهات والإشعارات الفورية",
         description: "تنبيهات المعاملات في الوقت الحقيقي والويب هوكس وقنوات التسليم لإبقاء العملاء والأنظمة على اطلاع فوري.",
         features: [

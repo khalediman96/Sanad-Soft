@@ -182,6 +182,7 @@ const translations = {
       getStarted: 'Get Started',
       learnMore: 'Learn More',
       sanadpay: {
+        name: 'SanadPay',
         tagline: 'Integrated Payment Gateway',
         description: 'A comprehensive payment gateway for stores and businesses with global security standards. Accept payments securely and reliably.',
         features: [
@@ -194,6 +195,7 @@ const translations = {
         ],
       },
       sanadak: {
+        name: 'Sanadak',
         tagline: 'Smart Digital Wallet',
         description: 'The smart digital wallet that empowers users to manage their finances, make payments, and transfer money with ease and security.',
         features: [
@@ -206,6 +208,7 @@ const translations = {
         ],
       },
       sanadnotify: {
+        name: 'SanadNotify',
         tagline: 'Advanced Notification Center',
         description: 'An advanced notification center for integration with various systems. Keep your users informed with real-time alerts across multiple channels.',
         features: [
@@ -531,6 +534,7 @@ const translations = {
       getStarted: 'ابدأ الآن',
       learnMore: 'اعرف المزيد',
       sanadpay: {
+        name: 'ساند باي',
         tagline: 'بوابة الدفع المتكاملة',
         description: 'بوابة الدفع المتكاملة للمتاجر والشركات بمعايير أمان عالمية. استقبل المدفوعات بأمان وموثوقية.',
         features: [
@@ -543,6 +547,7 @@ const translations = {
         ],
       },
       sanadak: {
+        name: 'سانداك',
         tagline: 'المحفظة الرقمية الذكية',
         description: 'المحفظة الرقمية الذكية التي تمكّن المستخدمين من إدارة أموالهم وإجراء المدفوعات وتحويل الأموال بسهولة وأمان.',
         features: [
@@ -555,6 +560,7 @@ const translations = {
         ],
       },
       sanadnotify: {
+        name: 'ساند نوتيفاي',
         tagline: 'مركز الإشعارات المتطور',
         description: 'مركز الإشعارات المتطور للربط مع الأنظمة المختلفة. ابقِ مستخدميك على اطلاع بتنبيهات فورية عبر قنوات متعددة.',
         features: [
