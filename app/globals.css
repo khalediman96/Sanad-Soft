@@ -155,7 +155,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   height: 6px;
-  background: linear-gradient(90deg, rgba(44,191,174,0.95), rgba(34,160,146,0.6));
+  background: linear-gradient(90deg, rgba(44, 191, 174, 0.949), rgba(34,160,146,0.6));
   border-radius: 9999px;
   box-shadow: 0 6px 18px rgba(44,191,174,0.08);
   z-index: 30;

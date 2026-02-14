@@ -6,9 +6,9 @@ import { useLanguage } from "@/context/useLanguage";
 
 // Three featured partners
 const logos = [
-  { src: "/logos/partner1.svg", name: "Bank of Khartoum" },
-  { src: "/logos/nile.svg", name: "Bank of Nile" },
-  { src: "/logos/partner2.svg", name: "Sanad Wallet" },
+  { src: "/logos/bankofKhartoum.svg", name: "Bank of Khartoum" },
+  { src: "/logos/ElNileinBank.svg", name: "Bank of Nile" },
+  { src: "/logos/sanadPay.svg", name: "Sanad Wallet" },
 ];
 
 export function ClientsSection() {
