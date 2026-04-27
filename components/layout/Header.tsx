@@ -54,42 +54,35 @@ export function Header() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-[10000] transition-all duration-300",
-          scrolled
-            ? "dark:bg-secondary/5 backdrop-blur-md shadow-lg"
-            : "bg-transparent"
-        )}
-      >
+      <header className="fixed top-0 left-0 right-0 z-[10000] px-3 md:px-4 pt-3 transition-all duration-300">
         <div className="container-custom">
-          <nav className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
+          <nav
+            className={cn(
+              "flex items-center justify-between h-16 md:h-[72px] rounded-2xl border px-4 md:px-6 transition-all duration-300",
+              "bg-slate-950/70 backdrop-blur-xl shadow-[0_12px_40px_rgba(2,8,23,0.35)]",
+              scrolled ? "border-primary/30" : "border-white/10"
+            )}
+          >
             <Link
               href="#home"
-              className="flex items-center gap-2 text-xl font-bold"
+              className="flex items-center justify-center "
               onClick={handleNavClick}
             >
-              <Image 
-                src={isRTL ? "/logos/sanadlogo-ar.svg" : "/logos/sanadlogo.svg"} 
-                alt="Sanad Soft Logo" 
-                width={160} 
-                height={100} 
-                className="object-contain" 
+              <Image
+                src={language === "ar" ? "/logos/sanad-arabic.svg" : "/logos/LOGO.svg"}
+                alt="Sanad Soft Logo"
+                width={280}
+                height={110}
+                className="block h-14 md:h-16 w-auto object-contain"
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <ul className="hidden md:flex items-center gap-8">
+            <ul className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1.5">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={cn(
-                      "relative text-sm font-medium transition-colors hover:text-primary",
-                      "after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full",
-                      scrolled ? "text-foreground" : "text-foreground"
-                    )}
+                    className="block rounded-full px-4 py-2 text-sm font-medium text-foreground/90 transition-all hover:bg-white/5 hover:text-primary"
                   >
                     {t(item.key)}
                   </Link>
@@ -97,93 +90,84 @@ export function Header() {
               ))}
             </ul>
 
-            {/* CTA & Language Toggle (Desktop) */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-3">
               <button
                 onClick={toggleLanguage}
-                className={cn(
-                  "flex items-center gap-2 px-3 py-2 rounded-lg transition-all",
-                  "hover:bg-primary/10 text-foreground hover:text-primary"
-                )}
+                className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-foreground transition-all hover:border-primary/40 hover:text-primary"
                 aria-label="Toggle language"
               >
-               <HugeIcon name="globe" size={20} strokeWidth={2} />
+                <HugeIcon name="globe" size={18} strokeWidth={2} />
                 <span className="text-sm font-medium">{language === "en" ? "AR" : "EN"}</span>
               </button>
-              
+
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-medium text-sm rounded-full hover:bg-primary-dark transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-primary-dark px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-primary/40"
               >
                 {t('nav.getStarted')}
                 <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />
               </Link>
             </div>
 
-            {/* Mobile Menu Toggle */}
-            <div className="md:hidden relative z-[10001] flex items-center gap-3">
+            <div className="md:hidden relative z-[10001] flex items-center gap-2">
               <button
                 onClick={toggleLanguage}
-                className="flex items-center gap-1 px-2 py-1 rounded-lg text-white hover:bg-white/10 transition-colors relative z-[10001]"
+                className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-white transition-colors hover:border-primary/40 hover:text-primary"
                 aria-label="Toggle language"
               >
                 <span className="text-xs font-medium">{language === "en" ? "AR" : "EN"}</span>
               </button>
-              
-              <div className="relative z-[10002]">
+
+              <div className="relative z-[10002] rounded-full border border-white/10 bg-white/5 p-1.5">
                 <Hamburger
-                toggled={isOpen}
-                toggle={setIsOpen}
-                size={24}
-                color="#ffffff"
-                label="Toggle menu"
-                rounded
-              />
+                  toggled={isOpen}
+                  toggle={setIsOpen}
+                  size={20}
+                  color={isOpen ? "#8A9A5B" : "#ffffff"}
+                  label="Toggle menu"
+                  rounded
+                />
               </div>
             </div>
           </nav>
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer - Outside header to avoid blur effect */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 md:hidden z-[9998]"
+              className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm md:hidden z-[9998]"
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Drawer */}
             <motion.div
               initial={{ x: isRTL ? "-100%" : "100%" }}
               animate={{ x: 0 }}
               exit={{ x: isRTL ? "-100%" : "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              style={{ backgroundColor: '#0f172a' }}
               className={cn(
-                "fixed top-0 bottom-0 w-[280px] shadow-xl md:hidden z-[9999]",
-                isRTL ? "left-0" : "right-0"
+                "fixed top-0 bottom-0 w-[300px] bg-[linear-gradient(180deg,#0b1320,#08111b)] shadow-2xl md:hidden z-[9999] border-white/10",
+                isRTL ? "left-0 border-r" : "right-0 border-l"
               )}
             >
-              <div className="flex flex-col h-full pt-20 pb-8 px-6">
-                <ul className="flex flex-col gap-2">
+              <div className="flex flex-col h-full pt-24 pb-8 px-5">
+                <ul className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/5 p-3">
                   {navItems.map((item, index) => (
                     <motion.li
                       key={item.href}
                       initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.08 }}
                     >
                       <Link
                         href={item.href}
                         onClick={handleNavClick}
-                        className="block py-3 px-4 text-white font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
+                        className="block rounded-xl py-3 px-4 text-white font-medium hover:bg-primary/10 hover:text-primary transition-colors"
                       >
                         {t(item.key)}
                       </Link>
@@ -191,11 +175,12 @@ export function Header() {
                   ))}
                 </ul>
 
-                <div className="mt-auto">
+                <div className="mt-auto rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p className="mb-3 text-sm text-white/70">{t('hero.badge')}</p>
                   <Link
                     href="#contact"
                     onClick={handleNavClick}
-                    className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-primary text-white font-medium rounded-full hover:bg-primary-dark transition-colors"
+                    className="flex items-center justify-center gap-2 w-full rounded-full bg-gradient-to-r from-primary to-primary-dark px-5 py-3 text-white font-medium transition-colors"
                   >
                     {t('nav.getStarted')}
                     <HugeIcon name="arrow-right" size={16} className={cn(isRTL && "rotate-180")} />

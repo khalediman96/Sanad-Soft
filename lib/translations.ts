@@ -147,6 +147,43 @@ export const translations = {
       ctaDesc: "Our team of experts can design and implement tailored financial solutions that perfectly match your business requirements and goals.",
       ctaButton: "Contact Our Team",
     },
+    // Pricing Section
+    pricing: {
+      subtitle: "Pricing Plans",
+      title: "Flexible Plans for",
+      titleHighlight: "Ambitious Teams",
+      description: "Choose the package that fits your growth stage with secure infrastructure, onboarding support, and room to scale.",
+      plans: [
+        {
+          name: "Starter",
+          badge: "Launch",
+          price: "Custom",
+          period: "for early teams",
+          description: "A strong foundation for startups and smaller businesses beginning their digital payments journey.",
+          features: ["Payment acceptance", "Basic dashboard", "Secure onboarding", "Email support"],
+          cta: "Request Starter",
+        },
+        {
+          name: "Growth",
+          badge: "Most Popular",
+          price: "Scale",
+          period: "for growing businesses",
+          description: "Advanced tools and integrations designed for businesses handling higher transaction volume.",
+          features: ["Advanced analytics", "API access", "Priority support", "Multi-channel payments"],
+          cta: "Choose Growth",
+        },
+        {
+          name: "Enterprise",
+          badge: "Tailored",
+          price: "Enterprise",
+          period: "for institutions",
+          description: "A bespoke package for banks, large merchants, and organizations needing deep customization.",
+          features: ["Custom integrations", "Dedicated manager", "Compliance workflows", "24/7 technical support"],
+          cta: "Talk to Sales",
+        },
+      ],
+      note: "All plans include secure setup, compliance-ready infrastructure, and expert guidance.",
+    },
     // Solutions Section
     solutions: {
       subtitle: "Industry Solutions",
@@ -478,6 +515,44 @@ export const translations = {
       ctaDesc: "يمكن لفريق خبرائنا تصميم وتنفيذ حلول مالية مخصصة تتطابق تماماً مع متطلبات عملك وأهدافك.",
       ctaButton: "اتصل بفريقنا",
     },
+    // Pricing Section
+    pricing: {
+      subtitle: "خطط الأسعار",
+      title: "خطط مرنة لـ",
+      titleHighlight: "الفرق الطموحة",
+      description: "اختر الباقة المناسبة لمرحلة نموك مع بنية تحتية آمنة ودعم في الإعداد وقابلية عالية للتوسع.",
+      plans: [
+        {
+          name: "البداية",
+          badge: "انطلاق",
+          price: "مخصص",
+          period: "للفرق الناشئة",
+          description: "أساس قوي للشركات الناشئة والأعمال الصغيرة التي تبدأ رحلتها في المدفوعات الرقمية.",
+          features: ["قبول المدفوعات", "لوحة تحكم أساسية", "إعداد آمن", "دعم عبر البريد"],
+          cta: "اطلب الباقة",
+        },
+        {
+          name: "النمو",
+          badge: "الأكثر طلباً",
+          price: "توسّع",
+          period: "للأعمال المتنامية",
+          description: "أدوات متقدمة وتكاملات مناسبة للشركات التي تدير حجماً أعلى من المعاملات.",
+          features: ["تحليلات متقدمة", "وصول إلى API", "دعم أولوية", "مدفوعات متعددة القنوات"],
+          cta: "اختر النمو",
+        },
+        {
+          name: "المؤسسات",
+          badge: "مفصل حسب الطلب",
+          price: "مؤسسي",
+          period: "للمؤسسات الكبيرة",
+          description: "باقة مخصصة للبنوك والتجار الكبار والجهات التي تحتاج إلى تخصيص عميق.",
+          features: ["تكاملات مخصصة", "مدير حساب", "مسارات امتثال", "دعم فني 24/7"],
+          cta: "تواصل مع المبيعات",
+        },
+      ],
+      note: "جميع الباقات تشمل إعداداً آمناً وبنية متوافقة مع المتطلبات وإرشاداً متخصصاً.",
+    },
+
     // Solutions Section
     solutions: {
       subtitle: "حلول الصناعة",

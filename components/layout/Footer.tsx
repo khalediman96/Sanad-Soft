@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HugeIcon, type IconName } from "@/components/ui";
@@ -66,8 +67,7 @@ export function Footer() {
   })();
 
   return (
-    <footer className="bg-secondary text-white relative">
-      {/* Animated background elements */}
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[linear-gradient(180deg,#0d1627,#08111c)] text-white">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-0 left-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"
@@ -94,60 +94,63 @@ export function Footer() {
       </div>
 
       <div className="container-custom py-16 relative z-10">
-        {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
-          {/* Brand Section */}
           <motion.div
             className="lg:col-span-2"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Link href="#home" className="inline-block text-2xl font-bold mb-4 group">
-                <span className="text-primary group-hover:text-primary-dark transition-colors">Sanad</span>
-                <span className="text-white">Soft</span>
-              </Link>
-            </motion.div>
-            <motion.p
-              className="text-gray-400 max-w-sm mb-6 text-start"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              {t('footer.description')}
-            </motion.p>
-            
-            {/* Social Links */}
-            <div className="flex items-center gap-4">
-              {socialLinks.map((social, idx) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-700/60 to-slate-800/60 border border-primary/20 text-white hover:border-primary/50 transition-all group relative overflow-hidden"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                >
-                  {/* Hover Background */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  <div className="relative z-10">
-                    <HugeIcon name={social.icon} size={18} />
-                  </div>
-                </motion.a>
-              ))}
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Link href="#home" className="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-slate-950/40 px-2.5 py-1.5 mb-4">
+                  <Image
+                    src={language === "ar" ? "/logos/sanad-arabic.svg" : "/logos/LOGO.svg"}
+                    alt="Sanad Soft Logo"
+                    width={190}
+                    height={64}
+                    className="block h-11 w-auto object-contain"
+                  />
+                </Link>
+              </motion.div>
+              <motion.p
+                className="text-gray-300 max-w-md mb-6 text-start"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {t('footer.description')}
+              </motion.p>
+
+              <div className="flex items-center gap-4">
+                {socialLinks.map((social, idx) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-700/60 to-slate-800/60 border border-primary/20 text-white hover:border-primary/50 transition-all group relative overflow-hidden"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: idx * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.12, rotate: 8 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    <div className="relative z-10">
+                      <HugeIcon name={social.icon} size={18} />
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </motion.div>
 

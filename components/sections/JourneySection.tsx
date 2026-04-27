@@ -10,8 +10,26 @@ export function JourneySection() {
   const { language, t } = useLanguage();
   const items = (t('journey.items') as unknown as { year: string; title: string; desc: string }[]) ?? [];
 
+  const journeyHighlights = [
+    {
+      value: items[0]?.year ?? "2018",
+      label: items[0]?.title ?? "Founded",
+      icon: "users" as IconName,
+    },
+    {
+      value: `${items.length}+`,
+      label: t('journey.title') as string,
+      icon: "lightning" as IconName,
+    },
+    {
+      value: items[items.length - 1]?.year ?? "2024",
+      label: items[items.length - 1]?.title ?? "Expansion",
+      icon: "globe" as IconName,
+    },
+  ];
+
   return (
-    <section id="journey" className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <section id="journey" className="section-blend py-20 md:py-28 relative overflow-hidden">
       {/* Background image with vignette */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 md:opacity-30 bg-image-fixed"
@@ -46,6 +64,18 @@ export function JourneySection() {
           </AnimatedSection>
         </div>
 
+        <div className="grid md:grid-cols-3 gap-4 mb-10 md:mb-14 max-w-5xl mx-auto">
+          {journeyHighlights.map((item) => (
+            <div key={`${item.value}-${item.label}`} className="card-aurora glass rounded-2xl border border-white/10 px-5 py-4 text-start">
+              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-dark text-white shadow-lg shadow-primary/20">
+                <HugeIcon name={item.icon} size={20} />
+              </div>
+              <p className="text-2xl font-bold text-white">{item.value}</p>
+              <p className="text-sm text-white/65">{item.label}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="relative max-w-6xl mx-auto z-10">
           {/* Animated central line */}
           <div className="timeline-line-modern" />
@@ -66,20 +96,23 @@ export function JourneySection() {
                   {/* Content Card */}
                   <div className="md:w-[calc(50%-3rem)] relative">
                     <div className={cn(
-                      "timeline-card-modern backdrop-blur-sm bg-gradient-to-br from-slate-800/40 to-slate-900/60 border border-primary/20 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-primary/20 transition-all duration-500 group-hover:border-primary/40",
+                      "timeline-card-modern card-aurora relative backdrop-blur-xl bg-gradient-to-br from-slate-800/55 to-slate-900/80 border border-white/10 rounded-[24px] p-6 md:p-8 shadow-[0_18px_50px_rgba(2,8,23,0.28)] hover:shadow-primary/20 transition-all duration-500 group-hover:border-primary/40",
                       idx % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
                     )}>
-                      {/* Icon */}
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <HugeIcon name={milestoneIcons[idx % milestoneIcons.length]} size={24} strokeWidth={2} className="text-white" />
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,168,153,0.10),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(96,165,250,0.12),transparent_28%)]" />
+
+                      <div className="relative mb-4 flex items-start justify-between gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <HugeIcon name={milestoneIcons[idx % milestoneIcons.length]} size={24} strokeWidth={2} className="text-white" />
+                        </div>
+                        <span className="text-3xl font-black text-white/10">0{idx + 1}</span>
                       </div>
-                      
-                      {/* Year badge */}
+
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-3">
                         <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                         <span className="text-primary font-bold text-sm">{item.year}</span>
                       </div>
-                      
+
                       <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                         {item.title}
                       </h3>

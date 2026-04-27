@@ -1,17 +1,18 @@
 @import 'tailwindcss';
 @plugin 'lightswind/plugin';
 :root {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --primary: #2cbfae;
-  --primary-dark: #22a092;
-  --primary-light: #5ed4c6;
-  --secondary: #1e293b;
-  --muted: #475569;
-  --muted-foreground: #94a3b8;
-  --border: #334155;
-  --card: #1e293b;
-  --card-foreground: #f1f5f9;
+  --background: #07111d;
+  --foreground: #f8fafc;
+  --primary: #22a899;
+  --primary-dark: #1c8d80;
+  --primary-light: #5fd0c4;
+  --secondary: #101a2b;
+  --secondary-dark: #0b1320;
+  --muted: #42536a;
+  --muted-foreground: #a6b6c8;
+  --border: rgba(34, 168, 153, 0.18);
+  --card: rgba(16, 26, 43, 0.78);
+  --card-foreground: #f8fafc;
 }
 
 @theme inline {
@@ -21,6 +22,7 @@
   --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
   --color-secondary: var(--secondary);
+  --color-secondary-dark: var(--secondary-dark);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
@@ -40,11 +42,36 @@ html {
 }
 
 body {
-  background: var(--background);
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--background);
+  background-image:
+    radial-gradient(circle at top, rgba(34, 168, 153, 0.18) 0%, transparent 42%),
+    radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.1) 0%, transparent 28%),
+    linear-gradient(180deg, #091320 0%, #060d18 100%);
   color: var(--foreground);
   font-family: var(--font-cairo), var(--font-sans);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 85%);
+  opacity: 0.35;
+  z-index: -1;
+}
+
+::selection {
+  background: rgba(34, 168, 153, 0.35);
+  color: #fff;
 }
 
 /* Cairo font for Arabic */
@@ -119,7 +146,7 @@ body {
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, #f2fffd 0%, var(--primary-light) 25%, var(--primary) 60%, #d6fffb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -127,10 +154,84 @@ body {
 
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(180deg, rgba(11, 19, 32, 0.74), rgba(11, 19, 32, 0.58));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(34, 168, 153, 0.16);
+  box-shadow: 0 10px 30px rgba(2, 8, 23, 0.25);
+}
+
+/* Seamless section flow */
+.section-blend {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-blend::before,
+.section-blend::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8rem;
+  pointer-events: none;
+  filter: blur(28px);
+  opacity: 0.9;
+  z-index: 0;
+}
+
+.section-blend::before {
+  top: -2rem;
+  background: linear-gradient(180deg, rgba(34, 168, 153, 0.07), transparent 72%);
+}
+
+.section-blend::after {
+  bottom: -2rem;
+  background: linear-gradient(0deg, rgba(34, 168, 153, 0.05), transparent 72%);
+}
+
+.section-blend > .container-custom {
+  position: relative;
+  z-index: 1;
+}
+
+/* Colorful card edge glow */
+.card-aurora {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.card-aurora::before,
+.card-aurora::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(30px);
+  z-index: 0;
+  opacity: 0.9;
+}
+
+.card-aurora::before {
+  top: -42px;
+  right: -24px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(34, 168, 153, 0.24) 0%, rgba(167, 139, 250, 0.16) 38%, rgba(95, 208, 196, 0.12) 58%, transparent 78%);
+}
+
+.card-aurora::after {
+  left: -20px;
+  bottom: -36px;
+  width: 130px;
+  height: 130px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.18) 0%, rgba(244, 114, 182, 0.12) 42%, rgba(34, 168, 153, 0.1) 62%, transparent 80%);
+}
+
+.card-aurora > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Timeline (Journey) */

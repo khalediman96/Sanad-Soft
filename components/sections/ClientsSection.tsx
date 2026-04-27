@@ -16,7 +16,7 @@ export function ClientsSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="clients" className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <section id="clients" className="section-blend py-20 md:py-28 relative overflow-hidden">
       {/* Animated background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-20 animate-pulse" />
@@ -61,7 +61,7 @@ export function ClientsSection() {
                   <div className="absolute -inset-6 bg-gradient-to-r from-primary/30 to-primary-dark/30 rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-300 -z-10" />
                   
                   {/* Glass card background */}
-                  <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-primary/20 rounded-3xl p-8 group-hover:border-primary/50 group-hover:bg-slate-800/60 transition-all duration-300 backdrop-blur-sm">
+                  <div className="card-aurora bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-primary/20 rounded-3xl p-8 group-hover:border-primary/50 group-hover:bg-slate-800/60 transition-all duration-300 backdrop-blur-sm">
                     <motion.div 
                       className="flex items-center justify-center h-32 w-64 md:w-72"
                       whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}

@@ -84,9 +84,25 @@ export function ProductsSection() {
   };
 
   return (
-    <section id="products" className="py-20 md:py-28 bg-background relative overflow-hidden">
-      {/* Animated background decoration */}
-      <div className="absolute inset-0">
+    <section id="products" className="section-blend py-20 md:py-28 relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 md:opacity-30 bg-image-fixed"
+        style={{
+          backgroundImage: 'url(/payment.jpg)',
+        }}
+      />
+
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.42) 30%, rgba(15, 23, 42, 0.88) 64%, rgba(15, 23, 42, 0.98) 100%)',
+        }}
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-slate-950/20 pointer-events-none" />
+
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30 animate-pulse" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
@@ -137,7 +153,7 @@ export function ProductsSection() {
             ))}          </div>
 
           {/* Selected Product Panel */}
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-3xl p-8 md:p-12 mb-16 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 group">
+          <div className="card-aurora bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-3xl p-8 md:p-12 mb-16 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 group">
             {/* Decorative elements */}
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-300" />
             
@@ -175,7 +191,7 @@ export function ProductsSection() {
                     animation="fade-up"
                     delay={idx * 0.1}
                   >
-                    <div className="p-6 bg-gradient-to-br from-slate-700/30 to-slate-800/30 border border-primary/10 rounded-2xl hover:border-primary/30 hover:bg-slate-700/50 transition-all duration-300 group/item">
+                    <div className="card-aurora p-6 bg-gradient-to-br from-slate-700/30 to-slate-800/30 border border-primary/10 rounded-2xl hover:border-primary/30 hover:bg-slate-700/50 transition-all duration-300 group/item">
                       <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-3 group-hover/item:bg-primary/30 transition-all">
                         <HugeIcon name={["wallet", "credit-card", "shield", "lightning", "chart", "globe", "bell", "calendar", "users"][idx] as IconName} size={20} className="text-primary" />
                       </div>
@@ -204,7 +220,7 @@ export function ProductsSection() {
                   {/* Decorative gradient background */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-primary-dark/20 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-300 -z-10" />
                   
-                  <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/50 transition-all duration-300 backdrop-blur-sm group-hover:shadow-2xl group-hover:shadow-primary/20">
+                  <div className="card-aurora bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/50 transition-all duration-300 backdrop-blur-sm group-hover:shadow-2xl group-hover:shadow-primary/20">
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <span className="text-primary text-xs font-bold uppercase tracking-widest block mb-2">{product.tagline}</span>

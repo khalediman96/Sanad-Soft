@@ -49,7 +49,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-background">
+    <section id="about" className="section-blend py-20 md:py-28 relative overflow-hidden">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -123,7 +123,7 @@ export function AboutSection() {
                     {/* Gradient border effect */}
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary-dark/30 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-300 -z-10" />
                     
-                    <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-2xl p-6 text-start hover:border-primary/40 transition-all duration-300 backdrop-blur-sm h-full group-hover:shadow-xl group-hover:shadow-primary/20">
+                    <div className="card-aurora bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-2xl p-6 text-start hover:border-primary/40 transition-all duration-300 backdrop-blur-sm h-full group-hover:shadow-xl group-hover:shadow-primary/20">
                       {/* Icon */}
                       <div className="w-14 h-14 mb-4 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <HugeIcon name={stat.icon} size={28} className="text-white" />
@@ -163,7 +163,7 @@ export function AboutSection() {
                 {/* Animated background gradient */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary-dark/20 to-primary/20 opacity-0 group-hover:opacity-100 blur transition-all duration-300" />
                 
-                <div className="relative bg-gradient-to-r from-primary/60 via-primary-dark/60 to-primary/60 border border-primary/40 rounded-2xl p-8 text-white backdrop-blur-sm">
+                <div className="card-aurora relative bg-gradient-to-r from-primary/60 via-primary-dark/60 to-primary/60 border border-primary/40 rounded-2xl p-8 text-white backdrop-blur-sm">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <HugeIcon name="chart" size={24} className="text-white" />

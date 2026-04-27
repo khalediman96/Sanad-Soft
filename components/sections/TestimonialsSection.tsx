@@ -30,7 +30,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         {/* Gradient border effect */}
         <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-primary-dark/30 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-300 -z-10" />
         
-        <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-3xl p-6 md:p-8 h-full backdrop-blur-sm group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-primary/20 transition-all duration-300">
+        <div className="card-aurora bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-3xl p-6 md:p-8 h-full backdrop-blur-sm group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-primary/20 transition-all duration-300">
           {/* Quote Icon */}
           <motion.div 
             className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center mb-6"
@@ -130,7 +130,7 @@ export function TestimonialsSection() {
   }));
 
   return (
-    <section className="py-20 md:py-28 bg-secondary text-white overflow-hidden">
+    <section className="section-blend py-20 md:py-28 text-white overflow-hidden relative">
       <div className="container-custom">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">

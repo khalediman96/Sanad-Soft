@@ -73,7 +73,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-background">
+    <section id="contact" className="section-blend py-20 md:py-28 relative overflow-hidden">
       <div className="container-custom">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
@@ -117,7 +117,7 @@ export function ContactSection() {
                   {/* Gradient border */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-primary-dark/20 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-300 -z-10" />
                   
-                  <div className="flex items-start gap-4 p-6 bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-primary/20 rounded-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm group-hover:shadow-xl group-hover:shadow-primary/20">
+                  <div className="card-aurora flex items-start gap-4 p-6 bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-primary/20 rounded-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm group-hover:shadow-xl group-hover:shadow-primary/20">
                     <motion.div 
                       className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center flex-shrink-0"
                       whileHover={{ scale: 1.1, rotate: 10 }}
@@ -134,7 +134,7 @@ export function ContactSection() {
 
               {/* Office Hours */}
               <motion.div 
-                className="p-6 bg-gradient-to-br from-primary/60 to-primary-dark/60 border border-primary/40 rounded-2xl text-white backdrop-blur-sm"
+                className="card-aurora p-6 bg-gradient-to-br from-primary/60 to-primary-dark/60 border border-primary/40 rounded-2xl text-white backdrop-blur-sm"
                 whileHover={{ scale: 1.02 }}
               >
                 <h3 className="font-semibold mb-4 flex items-center gap-2 text-start">
@@ -155,7 +155,7 @@ export function ContactSection() {
 
           {/* Contact Form */}
           <AnimatedSection animation="fade-left" delay={0.3} className="lg:col-span-3">
-            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-3xl p-8 md:p-10 backdrop-blur-sm hover:border-primary/40 transition-all duration-300">
+            <div className="card-aurora bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-primary/20 rounded-3xl p-8 md:p-10 backdrop-blur-sm hover:border-primary/40 transition-all duration-300">
               {isSubmitted ? (
                 <motion.div 
                   className="text-start py-12"

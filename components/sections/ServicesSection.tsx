@@ -29,7 +29,7 @@ export function ServicesSection() {
   }));
 
   return (
-    <section id="services" className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <section id="services" className="section-blend py-20 md:py-28 relative overflow-hidden">
       {/* Background image with vignette */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 md:opacity-30 bg-image-fixed"
@@ -88,7 +88,7 @@ export function ServicesSection() {
                 {/* Gradient border effect */}
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-primary-dark/20 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-300 -z-10" />
                 
-                <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/50 transition-all duration-300 backdrop-blur-sm group-hover:shadow-2xl group-hover:shadow-primary/20">
+                <div className="card-aurora bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/50 transition-all duration-300 backdrop-blur-sm group-hover:shadow-2xl group-hover:shadow-primary/20">
                   {/* Icon with rotation animation */}
                   <motion.div 
                     className="w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mb-6 group-hover:scale-125 transition-transform duration-300"
@@ -147,7 +147,7 @@ export function ServicesSection() {
             {/* Animated border */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-primary-dark to-primary rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-300 -z-10" />
             
-            <div className="relative bg-gradient-to-r from-secondary/60 via-secondary-dark/60 to-secondary/60 border border-primary/30 rounded-3xl p-8 md:p-12 text-start backdrop-blur-sm">
+            <div className="card-aurora relative bg-gradient-to-r from-secondary/60 via-secondary-dark/60 to-secondary/60 border border-primary/30 rounded-3xl p-8 md:p-12 text-start backdrop-blur-sm">
               <div className="flex items-start gap-6">
                 <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center flex-shrink-0">
                   <HugeIcon name="star" size={32} className="text-primary" />
